@@ -1,0 +1,156 @@
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0 shadow" style=" background-color: #d4f5d4;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color: green; font-size: 30px; font-weight: 900; line-height: 0px;">
+    <img class="brand-logo" src="assets/Aveksha-logo.png" alt="positronX.io Logo" width="40">
+AVEKSHA STOCKS
+  </a>
+</nav>
+
+  
+  <!-- Sidebar navigation -->
+  
+  
+  <nav class="col-md-2 d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/add-book" style="color: green;">
+            <i class="fas fa-plus"></i>Add Blog
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/book-list" style="color: green;">
+            <i class="fas fa-list"></i>Blog List 
+          </a>
+        </li>
+        <!-- Calling SignOut() Api from AuthService -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="authService.SignOut()" style="color: red;">
+            <i class="fas fa-sign-out-alt"></i>Log out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+  
+  <div style="margin-top: 20px;">
+    <div class="title-group">
+      <h1 class="mat-h1">Add Blog</h1>
+      <mat-divider fxFlex="1 0"></mat-divider>
+    </div>
+   
+   
+    <!-- Post form -->
+    <div class="inner-wrapper">
+      <form [formGroup]="bookForm" (ngSubmit)="submitBook(bookForm.value,rteForm)" #resetBookForm="ngForm" novalidate>
+        <!-- Left block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            <!-- Post name -->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Blog title" formControlName="atitle">
+              <mat-error *ngIf="handleError('atitle', 'required')">
+                You must provide a<strong> title</strong>
+              </mat-error>
+            </mat-form-field>
+    
+         
+            <mat-form-field appearance="fill" class="example-full-width" >
+             <mat-label>Breif Description</mat-label>
+             <textarea id="et" cols="500" rows="6
+             " matInput formControlName="adesc"></textarea>
+             <mat-error *ngIf="handleError('adesc', 'required')">
+               You must provide an <strong>a description</strong>
+             </mat-error>
+           </mat-form-field>
+   
+           <div id="comp-render" *ngIf="display">
+             <app-spinner></app-spinner>
+           </div>
+   
+           <div>
+             Description
+           </div>
+   
+           <div>
+           <div>
+             <div id='content' class='box-form' style="margin: 0 auto; max-width:750px; padding:25px">
+                 <form #rteForm="ngForm">
+                     <div class="form-group">
+                         <ejs-richtexteditor  #fromRTE #name='ngModel' [(value)]='value' required name="name" [(ngModel)]="value"
+                             (created)="rteCreated()"></ejs-richtexteditor>
+                         <div *ngIf="(name.invalid && name.touched)" class="alert alert-danger">
+                             <div *ngIf="name.errors.required">
+                                 Value is required.
+                             </div>
+                         </div>
+                     </div>
+                 
+                 </form>
+             </div>
+         </div>
+         <style>
+             .alert-danger {
+                 color: #a94442;
+                 background-color: #f2dede;
+                 border-color: #ebccd1;
+             }
+           #btn-container {
+             margin-top: 10px;
+           }
+         </style>
+            
+          </div>
+   
+         
+   
+            <!-- Event date -->
+            <mat-form-field>
+              <input matInput readonly [matDatepicker]="picker" placeholder="Event date"
+                formControlName="adate" (dateChange)="formatDate($event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="handleError('adate', 'required')">
+                Blog date is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card>
+   
+        <!-- Right block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            <!-- Image Picker-->
+   
+            <div class="text-centre">
+             <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
+            </div>
+            <label>Select file to upload</label>
+            <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
+            <mat-error *ngIf="handleError('aimage', 'required')">
+             You must provide a<strong> Blog image</strong>
+           </mat-error>
+          </div>
+        </mat-card>
+   
+      
+        <!-- Submit & Reset -->
+        <mat-card>
+          <div class="full-wrapper button-wrapper">
+            <div class="button-wrapper">
+              <button mat-flat-button color="warn" type="submit" style="background-color: green;" >Submit</button>
+              <button mat-flat-button color="war" type="reset"  (click)="resetForm()">Clear</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+   
+   </div>
+  
+        </div>
+      </main>
