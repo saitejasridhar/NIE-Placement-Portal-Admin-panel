@@ -26,11 +26,22 @@ export interface Language {
   templateUrl: './add-book.component.html',
   styleUrls: ['./add-book.component.css']
 })
+
+
 export class AddBookComponent implements OnInit {
 
+  demo: string = ``;
   loading: boolean = true;
 
-  
+  public tools: object = {
+    items: [
+           'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
+           'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+           'LowerCase', 'UpperCase', '|', 'Undo', 'Redo', '|',
+           'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
+           'Indent', 'Outdent', '|', 'CreateLink','CreateTable',
+           'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|']
+   };
   
   @ViewChild('fromRTE')
     private rteEle: RichTextEditorComponent;
@@ -40,9 +51,11 @@ export class AddBookComponent implements OnInit {
     }
     
   imgSrc: string='/assets/image_placeholder.jpg'
+  imgSc: string='';
   selectedImage: any = null;
 
   display = false;
+  preview=false;
   visible = true;
   selectable = true;
   removable = true;
@@ -60,8 +73,10 @@ export class AddBookComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => this.imgSrc = e.target.result;
+   
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
+      
     }
     else {
       this.imgSrc = '/assets/image_placeholder.jpg';
@@ -126,10 +141,23 @@ export class AddBookComponent implements OnInit {
     });
   }
 
+  title: string = '';
+  content: string = '';
+  img: string='';
+
+  viewpreview(formValue: Audtion,form:NgForm)
+  {
+    this.demo= form.value.name;
+    this.preview=true;
+    this.title = 'Test 1';
+    this.content = form.value.name;
+    this.img=this.bookForm.value.aimage;
+  }
+
   /* Submit book */
   submitBook(formValue: Audtion,form:NgForm) {
     if (this.bookForm.valid){
-
+      this.preview=true;
       this.display = true;
       var filePath=`audition/${this.selectedImage.name}`;
       const fileRef = this.storage.ref(filePath);
