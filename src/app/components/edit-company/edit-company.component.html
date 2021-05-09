@@ -1,0 +1,91 @@
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0 shadow" style=" background-color: #d4f5d4;">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color: green; font-size: 30px; font-weight: 900; line-height: 0px;">
+      <img class="brand-logo" src="assets/Aveksha-logo.png" alt="positronX.io Logo" width="40">
+  AVEKSHA STOCKS
+    </a>
+  </nav>
+  
+    
+    <!-- Sidebar navigation -->
+    
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <app-nav-bar></app-nav-bar>
+     </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+<!-- Title group  -->
+<div class="title-group" style="margin-top:2%;">
+    <h1 class="mat-h1">Edit Company</h1>
+    <mat-divider fxFlex="1 0"></mat-divider>
+  </div>
+  
+  <div class="inner-wrapper">
+    <form [formGroup]="editCompanyForm" novalidate>
+      <mat-card>
+        <div class="controlers-wrapper">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Post name" formControlName="atitle">
+            <mat-error *ngIf="handleError('atitle', 'required')">
+              You must provide a<strong> name</strong>
+            </mat-error>
+          </mat-form-field>
+  
+     
+          <!-- Location -->
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Location" formControlName="adesc">
+            <mat-error *ngIf="handleError('adesc', 'required')">
+              You must provide an <strong>location</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Event date -->
+          <mat-form-field>
+            <input matInput readonly [matDatepicker]="picker" placeholder="Event date"
+              formControlName="adate" (dateChange)="formatDate($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="handleError('adate', 'required')">
+              Event date is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card>
+  
+      
+
+      <mat-card>
+        <div class="controlers-wrapper">
+          <!-- Image Picker-->
+  
+          <div class="text-centre">
+           <img [src]="imgSrc"  width="350px" height="250px" (click)="fileUploader.click()">
+          </div>
+          <label>Select file to upload</label>
+          <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
+          
+          <mat-error *ngIf="handleError('aimage', 'required')">
+              
+           You must provide a<strong> post image</strong>
+         </mat-error>
+         <br>
+         <div>Prefered size 770*440</div>
+        </div>
+      </mat-card>
+
+      <mat-card>
+        <div class="full-wrapper button-wrapper">
+          <div class="button-wrapper">
+            <button mat-flat-button style="background-color: #242466;" color="warn" (click)="UpdateAudtion(editCompanyForm.value)">Update</button>
+            <button mat-flat-button color="war" type="button" (click)="goBack()">Go Back</button>
+          </div>
+        </div>
+      </mat-card>
+
+    </form>
+  </div>
+
+
+
+
+</main>

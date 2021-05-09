@@ -1,25 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { SignInComponent } from '../../components/sign-in/sign-in.component';
 import { SignUpComponent } from '../../components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from '../../components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from '../../components/verify-email/verify-email.component';
-import { AddBookComponent } from '../../components/add-book/add-book.component';
-import { BookListComponent } from '../../components/book-list/book-list.component';
+import { AddCompanyComponent } from '../../components/add-company/add-company.component';
+import { CompanyListComponent } from '../../components/company-list/company-list.component';
+import { EditCompanyComponent } from '../../components/edit-company/edit-company.component';
+
 
 
 import { AuthGuard } from "../../shared/guard/auth.guard";
+import { from } from 'rxjs';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/add-book', pathMatch: 'full'},
+  { path: '', redirectTo: '/add-company', pathMatch: 'full'},
   { path: 'sign-in', component: SignInComponent},
   { path: 'register-user', component: SignUpComponent},
-  { path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard] },
+  { path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  {path: 'add-book',component:AddBookComponent},
-  {path:'book-list',component:BookListComponent}
+  { path: 'edit-company/:id', component: EditCompanyComponent },
+  {path: 'add-company',component:AddCompanyComponent},
+  {path:'company-list',component:CompanyListComponent},
 ];
 
 @NgModule({

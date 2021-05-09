@@ -1,42 +1,20 @@
-<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0 shadow" style=" background-color: #d4f5d4;">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color: green; font-size: 30px; font-weight: 900; line-height: 0px;">
-    <img class="brand-logo" src="assets/Aveksha-logo.png" alt="positronX.io Logo" width="40">
-AVEKSHA STOCKS
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+    <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+    <span style=" border-left: 1px solid #242466 ;
+    height: 70px; margin-left: 8px;"></span>
+PLACEMENT <span style="font-weight: 330;">PORTAL</span>
   </a>
 </nav>
-  
 
-  
-  
-  <nav class="col-md-2 d-md-block bg-light sidebar">
-    <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="/add-book" style="color: green;">
-            <i class="fas fa-plus"></i>Add Blog
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="/book-list" style="color: green;">
-            <i class="fas fa-list"></i>Blog List 
-          </a>
-        </li>
-        <!-- Calling SignOut() Api from AuthService -->
-        <li class="nav-item">
-          <a class="nav-link" (click)="authService.SignOut()" style="color: red;">
-            <i class="fas fa-sign-out-alt"></i>Log out
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
+<nav class="col-md-2 d-md-block bg-light sidebar">
+  <app-nav-bar></app-nav-bar>
+ </nav>
       <!-- Main content -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="inner-adjust">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Blog List</h1>
+                <h4  style="color: #242466;">Company List</h4>
               </div>
               
               <div class="pricing-header mx-auto">
@@ -44,7 +22,7 @@ AVEKSHA STOCKS
                 <!-- No data shows when their is no student data available -->
                 <div class="no-data text-center" *ngIf="noData">
                   
-                  <p class="nodata-msg">No blogs added yet!</p>
+                  <p class="nodata-msg">No companies added yet!</p>
                 </div>
               
                 <!-- Showing students data -->
@@ -56,7 +34,8 @@ AVEKSHA STOCKS
                         <th scope="col" class="w-25">Title</th>
                         <th scope="col" class="w-25">Breif Desc</th>
                         <th scope="col" class="w-25">Date</th>
-                        <th class="text-center" scope="col" class="w-18">Delete</th>
+                        <th class="text-center" scope="col" class="w-9">Delete</th>
+                        <th class="text-center" scope="col" class="w-9">edit</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -68,8 +47,10 @@ AVEKSHA STOCKS
                         <td>{{student.adesc}}</td>
                         <td>{{student.adate}}</td>
                         <td class="text-center action-block">
-                          <!-- routerLink="/edit-student/{{student.$key}}" is refered to { path: 'edit-student/:id', component: EditStudentComponent } in app-routing.moudles.ts -->
-                          <i style="color: red;" class="far fa-trash-alt" (click)="deleteStudent(student)"></i></td>
+                        <i style="color: red;" class="far fa-trash-alt" (click)="deleteStudent(student)"></i></td>
+
+                          <td class="text-center action-block">
+                            <i style="color: red;" class="far fa-edit" [routerLink]="['/edit-company/', student.$key]"></i></td>
                       </tr>
                     </tbody>
                   </table>

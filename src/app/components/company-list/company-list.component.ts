@@ -2,11 +2,11 @@ import { OnInit, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Router } from "@angular/router";
 
-import { Audtion } from './../../shared/audtion';
+import { Company } from '../../shared/company';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 import {MatTableDataSource} from '@angular/material'
-import { AudtionService } from './../../shared/audtion.service';
+import { CompanyService } from '../../shared/company.service';
 
 export class Student{
   $key:String;
@@ -18,22 +18,21 @@ export class Student{
 }
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  selector: 'app-company-list',
+  templateUrl: './company-list.component.html',
+  styleUrls: ['./company-list.component.css']
 })
 
 
-export class BookListComponent implements OnInit  {
+export class CompanyListComponent implements OnInit  {
   display = false;
   p: number = 1;                      // Settup up pagination variable
   Student: Student[];                 // Save students data in Student's array.
   hideWhenNoStudent: boolean = false; // Hide students data table when no student.
   noData: boolean = false;   
   
-  dataSource: MatTableDataSource<Audtion>;
+  dataSource: MatTableDataSource<Company>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  BookData: any = [];
   displayedColumns: any[] = [
     '$key',
     'atitle', 
@@ -45,14 +44,14 @@ export class BookListComponent implements OnInit  {
   constructor(public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    public crudApi: AudtionService // Inject student CRUD services in constructor.
+    public companyService: CompanyService // Inject student CRUD services in constructor.
     ){
   }
 
 
   ngOnInit() {
     this.dataState(); // Initialize student's list, when component is ready
-    let s = this.crudApi.GetAudtionList(); 
+    let s = this.companyService.GetCompanyList(); 
     s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
       this.Student = [];
       data.forEach(item => {
@@ -65,7 +64,7 @@ export class BookListComponent implements OnInit  {
 
   
   dataState() {     
-    this.crudApi.GetAudtionList().valueChanges().subscribe(data => {
+    this.companyService.GetCompanyList().valueChanges().subscribe(data => {
       if(data.length <= 0){
         this.hideWhenNoStudent = false;
         this.noData = true;
@@ -78,8 +77,8 @@ export class BookListComponent implements OnInit  {
 
   // Method to delete student object
   deleteStudent(student) {
-    if (window.confirm('Are sure you want to delete this student ?')) { // Asking from user before Deleting student data.
-      this.crudApi.DeleteAudtion(student.$key) // Using Delete student API to delete student.
+    if (window.confirm('Are sure you want to delete this company ?')) { // Asking from user before Deleting student data.
+      this.companyService.DeleteCompany(student.$key) // Using Delete student API to delete student.
     }
   }
 }

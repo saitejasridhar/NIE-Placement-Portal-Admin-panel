@@ -35,12 +35,15 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
-import { AddBookComponent } from './components/add-book/add-book.component';
-import { BookListComponent } from './components/book-list/book-list.component';
+import { AddCompanyComponent } from './components/add-company/add-company.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
 
 import { FormsModule} from '@angular/forms';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-import { AudtionService } from './shared/audtion.service';
+import { CompanyService } from './shared/company.service';
+import { EditCompanyComponent } from './components/edit-company/edit-company.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
 
 
 
@@ -51,8 +54,10 @@ import { AudtionService } from './shared/audtion.service';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    AddBookComponent,
-    BookListComponent
+    AddCompanyComponent,
+    CompanyListComponent,
+    EditCompanyComponent,
+    NavBarComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -70,7 +75,7 @@ import { AudtionService } from './shared/audtion.service';
     AngularFirestoreModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,AudtionService,AngularFirestore],
+  providers: [AuthService,CompanyService,AngularFirestore],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

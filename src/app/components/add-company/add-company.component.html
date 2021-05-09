@@ -1,0 +1,106 @@
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+    <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+    <span style=" border-left: 1px solid #242466 ;
+    height: 70px; margin-left: 8px;"></span>
+PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+  </a>
+</nav>
+
+  
+  <!-- Sidebar navigation -->
+  
+  <nav class="col-md-2 d-md-block bg-light sidebar">
+   <app-nav-bar></app-nav-bar>
+  </nav>
+  
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+  
+
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
+            <h4 style="color: #242466;">Add Company</h4>
+          </div>
+   
+    <!-- Post form -->
+    <div class="inner-wrapper">
+      <form [formGroup]="companyForm" #resetCompanyForm="ngForm" novalidate>
+        <!-- Left block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            <!-- Post name -->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Blog title" formControlName="atitle">
+              <mat-error *ngIf="handleError('atitle', 'required')">
+                You must provide a<strong> title</strong>
+              </mat-error>
+            </mat-form-field>
+    
+         
+            <mat-form-field appearance="fill" class="example-full-width" >
+             <mat-label>Breif Description</mat-label>
+             <textarea id="et" cols="500" rows="6
+             " matInput formControlName="adesc"></textarea>
+             <mat-error *ngIf="handleError('adesc', 'required')">
+               You must provide an <strong>a description</strong>
+             </mat-error>
+           </mat-form-field>
+   
+           <div id="comp-render" *ngIf="display">
+             <app-spinner></app-spinner>
+           </div>
+
+   
+   
+            <!-- Event date -->
+            <mat-form-field>
+              <input matInput readonly [matDatepicker]="picker" placeholder="Event date"
+                formControlName="adate" (dateChange)="formatDate($event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="handleError('adate', 'required')">
+                Blog date is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card>
+   
+        <!-- Right block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            <!-- Image Picker-->
+   
+            <div class="text-centre">
+             <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
+            </div>
+            <label>Select file to upload</label>
+            <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
+            <br>
+            <div>Prefered size 770*440</div>
+            <mat-error *ngIf="handleError('aimage', 'required')">
+             You must provide a<strong> Blog image</strong>
+           </mat-error>
+          </div>
+        </mat-card>
+<div>
+      
+
+      </div>
+
+      <mat-card>
+        <div class="full-wrapper button-wrapper">
+          <div class="button-wrapper">
+            <button mat-flat-button color="warn" (click)="submitCompany(companyForm.value)"  style="background-color:#242466;" >Submit</button>
+          </div>
+        </div>
+      </mat-card>
+        <!-- Submit & Reset -->
+      </form>
+
+    </div>
+   </div>
+  
+      </main>
+
+  
