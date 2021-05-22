@@ -20,17 +20,16 @@ PLACEMENT <span style="font-weight: 330;">PORTAL</span>
               <div class="pricing-header mx-auto">
               
                 <!-- No data shows when their is no student data available -->
-                <div class="no-data text-center" *ngIf="noData">
+                <div class="no-data text-center" *ngIf="!datapresent">
                   
                   <p class="nodata-msg">No companies added yet!</p>
                 </div>
               
                 <!-- Showing students data -->
-                <div class="table-responsive" *ngIf="hideWhenNoStudent">
+                <div class="table-responsive" *ngIf="datapresent">
                   <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
                     <thead>
                       <tr>
-                        <th scope="col" class="w-7" >Image</th>
                         <th scope="col" class="w-25">Title</th>
                         <th scope="col" class="w-25">Breif Desc</th>
                         <th scope="col" class="w-25">Date</th>
@@ -42,10 +41,9 @@ PLACEMENT <span style="font-weight: 330;">PORTAL</span>
                       <!-- *ngFor loop iterates over Student array and fetch the student's data -->
                       <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
                       <tr *ngFor="let student of Student | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
-                        <th scope="row"><img src="{{student.aimage}}" style="width: 200px; height: 140px;"></th>
-                        <td>{{student.atitle}}</td>
-                        <td>{{student.adesc}}</td>
-                        <td>{{student.adate}}</td>
+                        <td>{{student.Name}}</td>
+                        <td>{{student.Description}}</td>
+                        <td>{{student.Date}}</td>
                         <td class="text-center action-block">
                         <i style="color: red;" class="far fa-trash-alt" (click)="deleteStudent(student)"></i></td>
 

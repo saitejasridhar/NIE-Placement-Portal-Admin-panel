@@ -79,18 +79,6 @@ export class AddCompanyComponent implements OnInit {
 
 
 
-  showPreview(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => (this.imgSrc = e.target.result);
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    } else {
-      this.imgSrc = "/assets/image_placeholder.jpg";
-      this.selectedImage = null;
-    }
-  }
-
   constructor(
     public fb: FormBuilder,
     private companyService: CompanyService,
@@ -107,7 +95,6 @@ export class AddCompanyComponent implements OnInit {
     this.submitCompanyForm();
   }
 
-  toppings = new FormControl();
   toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
 
 
