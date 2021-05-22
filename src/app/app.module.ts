@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatProgressSpinnerModule} from '@angular/material';
+import {MatProgressSpinnerModule, MatChipsModule} from '@angular/material';
 import { AngularMaterialModule } from './material.module';
 import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -69,6 +69,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     RichTextEditorAllModule,
     FormsModule,
     BrowserModule,
+    MatChipsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
