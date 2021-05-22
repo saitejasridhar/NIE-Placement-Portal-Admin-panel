@@ -2,7 +2,7 @@ export class Company{
   $key:String;
   Branch:Array<string>;
   Backlog:number;
-  Batches:Array<string>;
+  Batches:Array<number>;
   Breakdown:string;
   Cgpa:number;
   Ctc:number;

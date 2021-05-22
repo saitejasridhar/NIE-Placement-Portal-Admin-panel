@@ -4,18 +4,11 @@ import { Location } from '@angular/common';
 import { COMMA, D, ENTER } from '@angular/cdk/keycodes';
 import { CompanyService } from '../../shared/company.service';
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from "rxjs/operators";
 import { NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Company } from 'src/app/shared/company';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-export interface Language {
-  name: string;
-}
-
-company:Company;
 
 @Component({
   selector: 'app-edit-company',
@@ -36,20 +29,17 @@ export class EditCompanyComponent implements OnInit {
   test=true;
   data:Company;
   addOnBlur = true;
-  languageArray: Language[] = [];
   @ViewChild('chipList') chipList;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
   editCompanyForm: FormGroup;
-
- 
-
-  tet: any;
-  company: Company;
+  roles: Array<string>;
+  skills: Array<string>;
+  batches: Array<number>;
+   company: Company;
 offering:Array<string>;
 
 toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
-
   ngOnInit() {
     this.submitCompanyForm();
         var id = this.actRoute.snapshot.paramMap.get('id');
@@ -59,17 +49,20 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
         this.editCompanyForm.controls['Date'].setValue(data.Date);
         this.editCompanyForm.controls['Description'].setValue(data.Description);
         this.editCompanyForm.controls['Backlog'].setValue(data.Backlog);
-        this.editCompanyForm.controls['Batches'].setValue(data.Batches);
+        this.editCompanyForm.controls['Batches'].setValue("");
         this.editCompanyForm.controls['Branch'].setValue(data.Branch);
         this.editCompanyForm.controls['Breakdown'].setValue(data.Breakdown);
         this.editCompanyForm.controls['Location'].setValue(data.Location);
-        this.editCompanyForm.controls['Skills'].setValue(data.Skills);
-        this.editCompanyForm.controls['Roles'].setValue(data.Roles);
+        this.editCompanyForm.controls['Skills'].setValue("");
+        this.editCompanyForm.controls['Roles'].setValue("");
         this.editCompanyForm.controls['Tenth'].setValue(data.Tenth);
         this.editCompanyForm.controls['Twelfth'].setValue(data.Twelfth);
         this.editCompanyForm.controls['Ctc'].setValue(data.Ctc);
         this.editCompanyForm.controls['Offer'].setValue(data.Offer);
-
+        this.editCompanyForm.controls['Cgpa'].setValue(data.Cgpa);
+        this.roles= data.Roles;
+        this.skills=data.Skills;
+        this.batches=data.Batches;
     });
   }
 
@@ -87,11 +80,8 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
 
   }
 
-  roles: string[] = [];
-  skills: string[] = [];
-  batches: string[] = [];
 
-  add(event: MatChipInputEvent, array: Array<string>): void {
+  add(event: MatChipInputEvent, array: Array<any>): void {
     const value = (event.value || "").trim();
     const input = event.input;
 
@@ -104,7 +94,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
     input.value = "";
   }
 
-  remove(role: any, array: Array<string>): void {
+  remove(role: any, array: Array<any>): void {
     const index = array.indexOf(role);
 
     if (index >= 0) {
@@ -156,6 +146,9 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
 
   UpdateAudtion(formValue) {
     if (this.editCompanyForm.valid){
+      this.editCompanyForm.value["Roles"] = this.roles;
+      this.editCompanyForm.value["Skills"] = this.skills;
+      this.editCompanyForm.value["Batches"] = this.batches;
       var id = this.actRoute.snapshot.paramMap.get('id');
       this.companyService.UpdateCompany(id, this.editCompanyForm.value);   
       this.router.navigate(['company-list']);  

@@ -19,45 +19,39 @@ PLACEMENT <span style="font-weight: 330;">PORTAL</span>
               
               <div class="pricing-header mx-auto">
               
-                <!-- No data shows when their is no student data available -->
-                <div class="no-data text-center" *ngIf="!datapresent">
-                  
-                  <p class="nodata-msg">No companies added yet!</p>
-                </div>
-              
+          <div *ngIf="!datapresent">
+            <h1>
+              no data
+            </h1>
+          </div>
                 <!-- Showing students data -->
                 <div class="table-responsive" *ngIf="datapresent">
-                  <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
-                    <thead>
-                      <tr>
-                        <th scope="col" class="w-25">Title</th>
-                        <th scope="col" class="w-25">Breif Desc</th>
-                        <th scope="col" class="w-25">Date</th>
-                        <th class="text-center" scope="col" class="w-9">Delete</th>
-                        <th class="text-center" scope="col" class="w-9">edit</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- *ngFor loop iterates over Student array and fetch the student's data -->
-                      <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
-                      <tr *ngFor="let student of Student | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
-                        <td>{{student.Name}}</td>
-                        <td>{{student.Description}}</td>
-                        <td>{{student.Date}}</td>
-                        <td class="text-center action-block">
-                        <i style="color: red;" class="far fa-trash-alt" (click)="deleteStudent(student)"></i></td>
+  <table  class="table table-hover" frame=void rules=rows style="border: 2px;">
+    <thead>
+      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Name</th>
+      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Description</th>
+      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Date</th>
+      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Edit</th>
+      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Delete</th>
+    </thead>
+    <tbody >
+      <tr *ngFor="let emp of list">
+        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Name}}</td>
+        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Description}}</td>
+        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Date}}</td>
+        <td class="text-center action-block">
+          <i style="color: red;" class="far fa-trash-alt" (click)="deleteCompany(emp.id)"></i></td>
 
-                          <td class="text-center action-block">
-                            <i style="color: red;" class="far fa-edit" [routerLink]="['/edit-company/', student.$key]"></i></td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <td class="text-center action-block">
+              <i style="color: red;" class="far fa-edit" [routerLink]="['/edit-company/', emp.id]"></i></td>
+      </tr>
+    </tbody>
+  </table>
                 </div>
-                <!-- Pagination -->
-                <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
               </div>
   
         </div>
+
       </main>
 
     
