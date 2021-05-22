@@ -92,12 +92,10 @@ console.log(this.sel);
 
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.companyService.GetCompany(id).valueChanges().subscribe(data => {
-      this.languageArray = data.languages;
       this.editCompanyForm.controls['atitle'].setValue(data.atitle);
       this.editCompanyForm.controls['adate'].setValue(data.adate);
       this.editCompanyForm.controls['adesc'].setValue(data.adesc);
       this.imgSrc=data.aimage;
-    
     })
   }
 
@@ -139,7 +137,6 @@ console.log(this.sel);
       {
         var id = this.actRoute.snapshot.paramMap.get('id');
         this.companyService.GetCompany(id).valueChanges().subscribe(data => {
-          this.languageArray = data.languages;
           formValue['aimage']=data.aimage;
         })
           var id = this.actRoute.snapshot.paramMap.get('id');

@@ -25,7 +25,8 @@
            <div class="controlers-wrapper">
               <!-- Name -->
               <mat-form-field appearance="outline" class="example-full-width">
-                 <input matInput placeholder="Company Name *" formControlName="Name">
+                 <mat-label>Company Name *</mat-label>
+                 <input matInput formControlName="Name">
                  <mat-error *ngIf="handleError('Name', 'required')">
                     You must provide a<strong>company name</strong>
                  </mat-error>

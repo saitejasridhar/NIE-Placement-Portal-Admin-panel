@@ -77,8 +77,8 @@ export class CompanyListComponent implements OnInit  {
 
   // Method to delete student object
   deleteStudent(student) {
-    if (window.confirm('Are sure you want to delete this company ?')) { // Asking from user before Deleting student data.
-      this.companyService.DeleteCompany(student.$key) // Using Delete student API to delete student.
+    if (window.confirm('Are sure you want to delete this company ?')) { 
+      this.companyService.DeleteCompany(student.$key)
     }
   }
 }
