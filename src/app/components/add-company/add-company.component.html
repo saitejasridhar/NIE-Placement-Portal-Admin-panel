@@ -1,107 +1,216 @@
 <nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
-    <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
-    <span style=" border-left: 1px solid #242466 ;
-    height: 70px; margin-left: 8px;"></span>
-PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+  <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+  <span style=" border-left: 1px solid #242466 ;
+     height: 70px; margin-left: 8px;"></span>
+  PLACEMENT <span style="font-weight: 330;">PORTAL</span>
   </a>
 </nav>
 
-  
-  <!-- Sidebar navigation -->
-  <!-- Sidebar navigation -->
-   <!-- Sidebar navigation -->
-  <nav class="col-md-2 d-md-block bg-light sidebar">
-   <app-nav-bar></app-nav-bar>
-  </nav>
-  
-      <!-- Main content -->
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="inner-adjust">
-  
-
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
-            <h4 style="color: #242466;">Add Company</h4>
-          </div>
-   
-    <!-- Post form -->
-    <div class="inner-wrapper">
-      <form [formGroup]="companyForm" #resetCompanyForm="ngForm" novalidate>
+<!-- Sidebar navigation -->
+<nav class="col-md-2 d-md-block bg-light sidebar">
+  <app-nav-bar></app-nav-bar>
+</nav>
+<!-- Main content -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="inner-adjust">
+     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-2 border-bottom">
+        <h4 style="color: #242466;">Add Company</h4>
+     </div>
+     <!-- Post form -->
+     <div class="inner-wrapper">
+        <form [formGroup]="companyForm" #resetCompanyForm="ngForm" novalidate>
         <!-- Left block -->
         <mat-card>
-          <div class="controlers-wrapper">
-            <!-- Post name -->
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Blog title" formControlName="atitle">
-              <mat-error *ngIf="handleError('atitle', 'required')">
-                You must provide a<strong> title</strong>
-              </mat-error>
-            </mat-form-field>
-    
-         
-            <mat-form-field appearance="fill" class="example-full-width" >
-             <mat-label>Breif Description</mat-label>
-             <textarea id="et" cols="500" rows="6
-             " matInput formControlName="adesc"></textarea>
-             <mat-error *ngIf="handleError('adesc', 'required')">
-               You must provide an <strong>a description</strong>
-             </mat-error>
-           </mat-form-field>
-   
-           <div id="comp-render" *ngIf="display">
-             <app-spinner></app-spinner>
+           <div class="controlers-wrapper">
+              <!-- Name -->
+              <mat-form-field appearance="outline" class="example-full-width">
+                 <input matInput placeholder="Company Name *" formControlName="Name">
+                 <mat-error *ngIf="handleError('Name', 'required')">
+                    You must provide a<strong>company name</strong>
+                 </mat-error>
+              </mat-form-field>
+              <!--Description-->
+              <mat-form-field appearance="outline" class="example-full-width" >
+                 <mat-label>Breif Description *</mat-label>
+                 <textarea id="et" cols="500" rows="9
+                    " matInput formControlName="Description"></textarea>
+                 <mat-error *ngIf="handleError('Description', 'required')">
+                    You must provide an <strong>a description</strong>
+                 </mat-error>
+              </mat-form-field>
+              <div id="comp-render" *ngIf="display">
+                 <app-spinner></app-spinner>
+              </div>
+              <!--- Branches --->
+              <mat-form-field appearance="outline">
+                 <mat-label>Branches *</mat-label>
+                 <mat-select multiple formControlName="Branch">
+                    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                 </mat-select>
+                 <mat-error *ngIf="handleError('Branch', 'required')">
+                    You must provide a<strong>company name</strong>
+                 </mat-error>
+              </mat-form-field>
+              <!--- 10th % --->
+              <mat-form-field hintLabel="In Percentage" appearance="outline">
+                 <mat-label>Enter 10th %</mat-label>
+                 <input matInput formControlName="Tenth" #input type="number" maxvalue="100" placeholder="Ex. 89.2">
+                 <mat-error *ngIf="handleError('Tenth', 'max')">
+                    The value is greater than the maximum
+                 </mat-error>
+                 <mat-error *ngIf="handleError('Tenth', 'min')">
+                    The value is lesser than the minimum
+                 </mat-error>
+              </mat-form-field>
+              <!--- 12th % --->
+              <mat-form-field hintLabel="In Percentage" appearance="outline">
+                 <mat-label>Enter 12th %</mat-label>
+                 <input matInput formControlName="Twelfth" #input type="number" maxvalue="100" placeholder="Ex. 89.2">
+                 <mat-error *ngIf="handleError('Twelfth', 'max')">
+                    The value is greater than the maximum
+                 </mat-error>
+                 <mat-error *ngIf="handleError('Twelfth', 'min')">
+                    The value is lesser than the minimum
+                 </mat-error>
+              </mat-form-field>
+              <!--- CGPA --->
+              <mat-form-field hintLabel="Max value 10" appearance="outline">
+                 <mat-label>Enter BE CGPA</mat-label>
+                 <input matInput formControlName="Cgpa" #input type="number" maxvalue="10" placeholder="Ex. 8.9">
+                 <mat-error *ngIf="handleError('Cgpa', 'max')">
+                    The value is greater than the maximum
+                 </mat-error>
+                 <mat-error *ngIf="handleError('Cgpa', 'min')">
+                    The value is lesser than the minimum
+                 </mat-error>
+              </mat-form-field>
+              <!--- Backlogs --->
+              <mat-form-field appearance="outline" hintLabel="" >
+                 <mat-label>Enter Number of Current Backlogs</mat-label>
+                 <input matInput formControlName="Backlog" #input type="number" maxvalue="10" placeholder="Ex. 2">
+                 <mat-error *ngIf="handleError('Backlog', 'min')">
+                    The value is lesser than the minimum
+                 </mat-error>
+              </mat-form-field>
            </div>
-
-   
-   
-            <!-- Event date -->
-            <mat-form-field>
-              <input matInput readonly [matDatepicker]="picker" placeholder="Event date"
-                formControlName="adate" (dateChange)="formatDate($event)">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf="handleError('adate', 'required')">
-                Blog date is required
-              </mat-error>
-            </mat-form-field>
-          </div>
         </mat-card>
-   
-        <!-- Right block -->
+        <!-- Right block---> 
         <mat-card>
-          <div class="controlers-wrapper">
-            <!-- Image Picker-->
-   
-            <div class="text-centre">
-             <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
-            </div>
-            <label>Select file to upload</label>
-            <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
-            <br>
-            <div>Prefered size 770*440</div>
-            <mat-error *ngIf="handleError('aimage', 'required')">
-             You must provide a<strong> Blog image</strong>
-           </mat-error>
-          </div>
+           <div class="controlers-wrapper">
+              <!--- Skills --->
+              <mat-form-field appearance="outline" class="example-chip-list">
+                 <mat-label>Skills</mat-label>
+                 <mat-chip-list #chipListskills aria-label="Skill selection">
+                    <mat-chip *ngFor="let skill of skills" selectable="true"
+                    removable="true" (removed)="remove(skill, skills)">
+                    {{skill}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input formControlName="Skills" placeholder="Add skill..."
+                    [matChipInputFor]="chipListskills"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    matChipInputAddOnBlur="true"
+                    (matChipInputTokenEnd)="add($event, skills)">
+                 </mat-chip-list>
+              </mat-form-field>
+              <!-- Job Roles -->
+              <mat-form-field appearance="outline" class="example-chip-list">
+                 <mat-label>Job Roles</mat-label>
+                 <mat-chip-list #chipListroles aria-label="Role selection">
+                    <mat-chip *ngFor="let role of roles" selectable ="true"
+                    removable="true" (removed)="remove(role, roles)">
+                    {{role}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input formControlName="Roles" placeholder="Add role..."
+                    [matChipInputFor]="chipListroles"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    matChipInputAddOnBlur="true"
+                    (matChipInputTokenEnd)="add($event, roles)">
+                 </mat-chip-list>
+              </mat-form-field>
+              <!--- Offering -->
+              <mat-form-field appearance="outline" >
+                 <mat-label>Offering</mat-label>
+                 <mat-select formControlName="Offer">
+                    <mat-option *ngFor="let offering1 of offering" [value]="offering1" >
+                    {{offering1}}
+                    </mat-option>
+                 </mat-select >
+              </mat-form-field>
+              <!--- Package --->
+              <mat-form-field appearance="outline">
+                 <mat-label>Package</mat-label>
+                 <input matInput formControlName="Ctc" type="number" class="example-right-align">
+                 <span matSuffix>Lakhs</span>
+                 <mat-hint align ="end">Salary Per Annum^</mat-hint>
+              </mat-form-field>
+              <!-- CTC Breakdown-->
+              <mat-form-field appearance="outline" class="example-full-width" >
+                 <mat-label>CTC Breakdown</mat-label>
+                 <textarea formControlName="Breakdown" cols="500" rows="4" matInput ></textarea>
+              </mat-form-field>
+              <!--- Batches --->
+              <mat-form-field appearance="outline" class="example-chip-list">
+                <mat-label>Batches</mat-label>
+                <mat-chip-list #chipListbatches aria-label="Batch selection">
+                   <mat-chip *ngFor="let batch of batches" selectable="true"
+                   removable="true" (removed)="remove(batch, batches)">
+                   {{batch}}
+                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                   </mat-chip>
+                   <input type="number" formControlName="Batches" placeholder="Add Batch..."
+                   [matChipInputFor]="chipListbatches"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   matChipInputAddOnBlur="true"
+                   (matChipInputTokenEnd)="add($event, batches)">
+                </mat-chip-list>
+             </mat-form-field>
+              <!--- Location --->
+              <mat-form-field appearance="outline" class="example-full-width">
+                 <input formControlName="Location" matInput placeholder="Job Location" >
+              </mat-form-field>
+              <!-- Last date -->
+              <mat-form-field appearance="outline">
+                 <input matInput readonly [matDatepicker]="picker" placeholder="Last Date to apply *"
+                 formControlName="Date" (dateChange)="formatDate($event)">
+                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                 <mat-datepicker #picker></mat-datepicker>
+                 <mat-error *ngIf="handleError('Date', 'required')">
+                    Blog date is required
+                 </mat-error>
+              </mat-form-field>
+           </div>
         </mat-card>
-<div>
-      
-
-      </div>
-
-      <mat-card>
-        <div class="full-wrapper button-wrapper">
-          <div class="button-wrapper">
-            <button mat-flat-button color="warn" (click)="submitCompany(companyForm.value)"  style="background-color:#242466;" >Submit</button>
-          </div>
+        <!-- Right block 
+           <mat-card>
+             <div class="controlers-wrapper">
+               <!-- Image Picker
+           
+               <div class="text-centre">
+                <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
+               </div>
+               <label>Select file to upload</label>
+               <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
+               <br>
+               <div>Prefered size 770*440</div>
+               <mat-error *ngIf="handleError('aimage', 'required')">
+                You must provide a<strong> Blog image</strong>
+              </mat-error>
+             </div>
+           </mat-card>-->
+        <div>
         </div>
-      </mat-card>
+        <mat-card>
+           <div class="full-wrapper button-wrapper">
+              <div class="button-wrapper">
+                 <button mat-flat-button color="warn" (click)="submitCompany(companyForm.value)"  style="background-color:#242466;" >Submit</button>
+              </div>
+           </div>
+        </mat-card>
         <!-- Submit & Reset -->
-      </form>
-
-    </div>
-   </div>
-  
-      </main>
-
-  
+        </form>
+     </div>
+  </div>
+</main>
