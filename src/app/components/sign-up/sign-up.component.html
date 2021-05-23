@@ -1,14 +1,17 @@
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+  <img class="brand-logo" src="assets/nie.png" alt="NIE Logo" width="34">
+  <span style=" border-left: 1px solid #242466 ;
+     height: 70px; margin-left: 8px;"></span>
+  PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+  </a>
+</nav>
+
 <div class="displayTable">
   <div class="displayTableCell">
 
-    <div class="px-logo">
-      <a href="https://www.positronx.io" target="_blank">
-        <img src="https://www.positronx.io/wp-content/themes/positronx/img/logo-positronx-white.svg" alt="positronX.io - Learn Full Stack Development">
-      </a>
-    </div>
-
     <div class="authBlock">
-      <h3>Sign Up</h3>
+      <h3 style="color: white;">Sign Up</h3>
 
       <div class="formGroup">
         <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
@@ -19,11 +22,11 @@
       </div>
 
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+        <input type="button" class="btn btn-blue btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
       </div>
 
       <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
+        <span class="or"><span class="orInner">OR</span></span>
       </div>
 
       <!-- Continue with Google -->
@@ -37,7 +40,7 @@
     </div>
 
     <div class="redirectToLogin">
-      <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+      <span style="color: black;">Already have an account? <span class="redirect" style="color: black;" routerLink="/sign-in">Log In</span></span>
     </div>
   </div>
 
