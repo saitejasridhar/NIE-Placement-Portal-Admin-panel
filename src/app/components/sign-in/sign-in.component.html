@@ -1,15 +1,17 @@
-<div class="displayTable" style="background-color: #bad7ee;">
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+  <img class="brand-logo" src="assets/nie.png" alt="NIE Logo" width="34">
+  <span style=" border-left: 1px solid #242466 ;
+     height: 70px; margin-left: 8px;"></span>
+  PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+  </a>
+</nav>
+
+<div class="displayTable" style="background-color: #ffff;">
   <div class="displayTableCell">
 
-    <div class="px-logo">
-      <a href="https://avekshastocks.com/" target="_blank" style="font-size: 25px; font-weight: 900; color: rgb(38, 49, 112);">
-        <img src="assets/Aveksha-logo.png"  alt="Aveska Stocks" width="60" height="200" >
-       NIE PLACEMENT CELL
-      </a>
-    </div>
-
     <div class="authBlock">
-      <h3>Sign In</h3>
+      <h3 style="color: #ffff;">Sign In</h3>
       <div class="formGroup">
         <input type="text" class="formControl" placeholder="Username" #userName required>
       </div>
@@ -20,23 +22,23 @@
 
       <!-- Calling SignIn Api from AuthService -->
       <div class="formGroup">
-        <input type="button" style="background-color: rgb(38, 49, 112);"  class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+        <input type="button" style="background-color: #b31414;"  class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
       </div>
 
       <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
+        <span class="or" style="font-size: 18px"><span class="orInner">OR</span></span>
       </div>
 
       <!-- Calling GoogleAuth Api from AuthService -->
       <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+        <button type="button" class="btn btn-red googleBtn" (click)="authService.GoogleAuth()">
           <i class="fab fa-google-plus-g"></i>
           Log in with Google
         </button>
       </div>
 
       <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
+        <span routerLink="/forgot-password" style="color: #ffff;">Forgot Password?</span>
       </div>
     </div>
 

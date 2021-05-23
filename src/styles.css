@@ -578,7 +578,7 @@ body .table thead th {
   .brand-logo {
     max-width: 175px;
     margin: 0 auto;
-    display: block;
+    display: initial;
   }
 
   .dasboard-text {
