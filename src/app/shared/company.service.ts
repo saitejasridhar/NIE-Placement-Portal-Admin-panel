@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company } from './company';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
 @Injectable({
@@ -10,43 +11,53 @@ export class CompanyService {
   companysRef: AngularFireList<any>;
   companyRef: AngularFireObject<any>;
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) {}
 
-  /* Create company */
-  AddCompany(company: Company) {
-    this.companysRef.push({
-     atitle: company.atitle,
-     adesc: company.adesc,
-     adate:company.adate,
-     aimage:company.aimage
-    })
-    .catch(error => {
-      this.errorMgmt(error);
-    })
+
+AddCompany(company:Company){ 
+  return new Promise<any>((resolve, reject) => { 
+     this.firestore
+         .collection("Companys")
+         .add(company)
+         .then(
+             res => {}, 
+             err => alert(err.message)
+         )
   }
+)}
+
 
   /* Get company */
   GetCompany(id: string) {
-    this.companyRef = this.db.object('Companys/' + id);
-    return this.companyRef;
+    const employeeData= this.firestore.collection("Companys").doc(id).valueChanges();
+    return employeeData;
   }  
 
   /* Get company list */
   GetCompanyList() {
-    this.companysRef = this.db.list('Companys');
-    return this.companysRef;
+    return this.firestore.collection("Companys").snapshotChanges();
   }
 
 
   /* Update company */
   UpdateCompany(id, company: Company) {
-    this.companyRef.update({
-        atitle: company.atitle,
-        adesc: company.adesc,
-        adate:company.adate,
-        aimage:company.aimage,
-    })
-    .catch(error => {
+    return this.firestore.doc('Companys/' + id).set({
+      Branch:company.Branch,
+        Backlog:company.Backlog,
+        Batches:company.Batches,
+        Breakdown:company.Breakdown,
+        Cgpa:company.Cgpa,
+        Ctc:company.Ctc,
+        Date:company.Date,
+        Description:company.Description,
+        Location:company.Location,
+        Name:company.Name,
+        Offer:company.Offer,
+        Roles:company.Roles,
+        Skills:company.Skills,
+        Tenth:company.Tenth,
+        Twelfth:company.Twelfth
+  }).catch(error => {
       this.errorMgmt(error);
     })
   }
@@ -54,11 +65,7 @@ export class CompanyService {
 
   /* Delete company */
   DeleteCompany(id: string) {
-    this.companyRef = this.db.object('Companys/' + id);
-    this.companyRef.remove()
-    .catch(error => {
-      this.errorMgmt(error);
-    })
+    return this.firestore.doc('Companys/' + id).delete();
   }
 
   // Error management

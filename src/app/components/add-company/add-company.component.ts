@@ -41,19 +41,14 @@ export class AddCompanyComponent implements OnInit {
   display = false;
   preview = false;
   visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  languageArray: Language[] = [];
+
 
   @ViewChild("resetCompanyForm") myNgForm: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
   companyForm: FormGroup;
 
- 
 
-  
 
   ////////  CHIPS   //////////
 
@@ -84,18 +79,6 @@ export class AddCompanyComponent implements OnInit {
 
 
 
-  showPreview(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => (this.imgSrc = e.target.result);
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    } else {
-      this.imgSrc = "/assets/image_placeholder.jpg";
-      this.selectedImage = null;
-    }
-  }
-
   constructor(
     public fb: FormBuilder,
     private companyService: CompanyService,
@@ -112,17 +95,8 @@ export class AddCompanyComponent implements OnInit {
     this.submitCompanyForm();
   }
 
-  toppings = new FormControl();
   toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
 
-  //JOB ROLES
-
-  //   numberFormControl = new FormControl('', [
-  //     Validators.min(0),
-  //     Validators.max(10),
-  //  ]);
-
-  //  branchFormcontrol = new FormControl('', [Validators.required]);
 
   submitCompanyForm() {
     this.companyForm = this.fb.group({
@@ -157,24 +131,22 @@ export class AddCompanyComponent implements OnInit {
     str = new Date(convertDate.getTime() + 1000 * 60 * 60 * 24)
       .toISOString()
       .substr(0, 10);
-    this.companyForm.get("adate").setValue(str, {
+    this.companyForm.get("Date").setValue(str, {
       onlyself: true,
     });
   }
 
   /* Reset form */
   resetForm() {
-    this.imgSrc = "/assets/image_placeholder.jpg";
-    this.languageArray = [];
+    this.roles = [];
+    this.batches=[];
+    this.skills=[];
     this.companyForm.reset();
     Object.keys(this.companyForm.controls).forEach((key) => {
       this.companyForm.controls[key].setErrors(null);
     });
   }
 
-  title: string = "";
-  content: string = "";
-  img: string = "";
 
   submitCompany(formValue: Company) {
     this.companyForm.value["Roles"] = this.roles;
@@ -184,23 +156,9 @@ export class AddCompanyComponent implements OnInit {
     if (this.companyForm.valid) {
       this.preview = true;
       this.display = true;
-      var filePath = `company/${this.selectedImage.name}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage
-        .upload(filePath, this.selectedImage)
-        .snapshotChanges()
-        .pipe(
-          finalize(() => {
-            fileRef.getDownloadURL().subscribe((url) => {
-              formValue["aimage"] = url;
-              this.companyService.AddCompany(formValue);
-              this.display = false;
-              location.reload();
-              alert("Upload Succsessfull");
-            });
-          })
-        )
-        .subscribe();
+      this.companyService.AddCompany(formValue);
+      this.display = false;
+      alert("Upload Succsessfull");
       this.resetForm();
     }
   }
