@@ -35,7 +35,7 @@ AddCompany(company:Company){
 
   /* Get company list */
   GetCompanyList() {
-    return this.firestore.collection("Companys");
+    return this.firestore.collection("Companys").snapshotChanges();
   }
 
 

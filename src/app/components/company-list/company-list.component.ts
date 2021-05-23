@@ -1,21 +1,11 @@
 import { OnInit, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Router } from "@angular/router";
-
 import { Company } from '../../shared/company';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 import {MatTableDataSource} from '@angular/material'
 import { CompanyService } from '../../shared/company.service';
-
-export class Student{
-  $key:String;
-  atitle:String;
-  adate:Date;
-  aimage:String;
-  adesc:String;
-  adesc1:String;
-}
 
 @Component({
   selector: 'app-company-list',
@@ -25,60 +15,45 @@ export class Student{
 
 
 export class CompanyListComponent implements OnInit  {
-  display = false;
   p: number = 1;                      // Settup up pagination variable
-  Student: Student[];                 // Save students data in Student's array.
-  hideWhenNoStudent: boolean = false; // Hide students data table when no student.
-  noData: boolean = false;   
+  datapresent: boolean = true; 
   
   dataSource: MatTableDataSource<Company>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: any[] = [
-    '$key',
-    'atitle', 
-    'adate',
-    'adesc',
-    'action'
-  ];
   
+  list: Company[];
+
   constructor(public authService: AuthService,
     public router: Router,
     public ngZone: NgZone,
-    public companyService: CompanyService // Inject student CRUD services in constructor.
+    public companyService: CompanyService 
     ){
   }
 
 
   ngOnInit() {
-    this.dataState(); // Initialize student's list, when component is ready
-    let s = this.companyService.GetCompanyList(); 
-    s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
-      this.Student = [];
-      data.forEach(item => {
-        let a = item.payload.toJSON(); 
-        a['$key'] = item.id;
-        this.Student.push(a as Student);
+    this.companyService.GetCompanyList().subscribe(actionArray => {
+      this.list = actionArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data() as Company
+        } ;      
       })
-    })
+      if(this.list.length>0)
+      {
+        this.datapresent=true;
+       }
+       else{
+         this.datapresent=false;
+       }});
   }
 
-  
-  dataState() {     
-    this.companyService.GetCompanyList().valueChanges().subscribe(data => {
-      if(data.length <= 0){
-        this.hideWhenNoStudent = false;
-        this.noData = true;
-      } else {
-        this.hideWhenNoStudent = true;
-        this.noData = false;
-      }
-    })
-  }
-
+ 
   // Method to delete student object
-  deleteStudent(student) {
-    if (window.confirm('Are sure you want to delete this company ?')) { // Asking from user before Deleting student data.
-      this.companyService.DeleteCompany(student.$key) // Using Delete student API to delete student.
+  deleteCompany(studentid) {
+    if (window.confirm('Are sure you want to delete this company ?')) { 
+      this.companyService.DeleteCompany(studentid).then(() => {
+      }, error => console.error(error));
     }
   }
 }

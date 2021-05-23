@@ -21,29 +21,28 @@ PLACEMENT <span style="font-weight: 330;">PORTAL</span>
               
           <div *ngIf="!datapresent">
             <h1>
-              no data
+              no  data
             </h1>
           </div>
                 <!-- Showing students data -->
-                <div class="table-responsive" *ngIf="datapresent">
-  <table  class="table table-hover" frame=void rules=rows style="border: 2px;">
+                <div style="overflow-x:auto; " class="table-responsive" *ngIf="datapresent">
+  <table  class="table table-hover" frame=void rules=rows style="border: 2px; border-radius: 10px;">
     <thead>
-      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Name</th>
-      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Description</th>
-      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Date</th>
-      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Edit</th>
-      <th style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">Delete</th>
+      <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230)">Name</th>
+      <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);">Branches</th>
+      <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);">Last Date</th>
+      <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);" >Edit</th>
+      <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);" >Delete</th>
     </thead>
     <tbody >
       <tr *ngFor="let emp of list">
-        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Name}}</td>
-        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Description}}</td>
-        <td style="padding: 10px; border-left:1px solid #ccc; border-right: 1px solid #ccc;">{{emp.Date}}</td>
-        <td class="text-center action-block">
-          <i style="color: red;" class="far fa-trash-alt" (click)="deleteCompany(emp.id)"></i></td>
-
+        <td>{{emp.Name}}</td>
+        <td>{{emp.Branch}}</td>
+        <td>{{emp.Date}}</td>
             <td class="text-center action-block">
               <i style="color: red;" class="far fa-edit" [routerLink]="['/edit-company/', emp.id]"></i></td>
+              <td class="text-center action-block">
+                <i style="color: red;" class="far fa-trash-alt" (click)="deleteCompany(emp.id)"></i></td>
       </tr>
     </tbody>
   </table>
