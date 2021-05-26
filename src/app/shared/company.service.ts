@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Company } from './company';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { CompileSummaryKind } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,8 @@ AddCompany(company:Company){
         Roles:company.Roles,
         Skills:company.Skills,
         Tenth:company.Tenth,
-        Twelfth:company.Twelfth
+        Twelfth:company.Twelfth,
+        Tier:company.Tier
   }).catch(error => {
       this.errorMgmt(error);
     })

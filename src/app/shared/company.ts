@@ -15,4 +15,5 @@ export class Company{
   Skills:Array<string>;
   Tenth:number;
   Twelfth:number;
+  Tier:string;
 }

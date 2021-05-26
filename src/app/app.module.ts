@@ -43,6 +43,7 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
 import { CompanyService } from './shared/company.service';
 import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { EventsComponent } from './components/events/events.component';
 
 
 
@@ -58,6 +59,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     CompanyListComponent,
     EditCompanyComponent,
     NavBarComponent,
+    EventsComponent,
   ],
   imports: [
     NgxPaginationModule,

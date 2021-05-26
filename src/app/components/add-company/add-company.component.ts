@@ -27,6 +27,7 @@ export interface Language {
 })
 export class AddCompanyComponent implements OnInit {
   offering: Array<string>;
+  tiers: Array<string>;
 
   demo: string = ``;
   loading: boolean = true;
@@ -82,12 +83,12 @@ export class AddCompanyComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private companyService: CompanyService,
-    private storage: AngularFireStorage,
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
   ) {
     this.offering = ["Internship", "Full-time", "Internship+FTE"];
+    this.tiers = ["Mass", "Core", "Dream"];
   }
 
   ngOnInit(): void {
@@ -115,7 +116,8 @@ export class AddCompanyComponent implements OnInit {
       Breakdown: ["", []],
       Skills: ["", []],
       Roles: ["", []],
-      Batches:["", []]
+      Batches:["", []],
+      Tier:["", []]
     });
   }
 

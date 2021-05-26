@@ -38,6 +38,7 @@ export class EditCompanyComponent implements OnInit {
   batches: Array<number>;
    company: Company;
 offering:Array<string>;
+tiers: Array<string>;
 
 toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
   ngOnInit() {
@@ -60,6 +61,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
         this.editCompanyForm.controls['Ctc'].setValue(data.Ctc);
         this.editCompanyForm.controls['Offer'].setValue(data.Offer);
         this.editCompanyForm.controls['Cgpa'].setValue(data.Cgpa);
+        this.editCompanyForm.controls['Tier'].setValue(data.Tier);
         this.roles= data.Roles;
         this.skills=data.Skills;
         this.batches=data.Batches;
@@ -77,6 +79,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
     public authService: AuthService,
   ) { 
     this.offering = ["Internship", "Full-time", "Internship+FTE"];
+    this.tiers = ["Mass","Core","Dream"];
 
   }
 
@@ -115,6 +118,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
       Twelfth: ["", [Validators.min(0), Validators.max(100)]],
       Backlog: ["", [Validators.min(0)]],
       Offer: ["", []],
+      Tier: ["", []],
       Ctc: ["", []],
       Location: ["", []],
       Breakdown: ["", []],
