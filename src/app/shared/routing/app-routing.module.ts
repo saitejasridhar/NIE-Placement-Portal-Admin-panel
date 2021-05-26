@@ -7,7 +7,7 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 import { AddCompanyComponent } from '../../components/add-company/add-company.component';
 import { CompanyListComponent } from '../../components/company-list/company-list.component';
 import { EditCompanyComponent } from '../../components/edit-company/edit-company.component';
-
+import {EventsComponent} from '../../components/events/events.component';
 
 
 import { AuthGuard } from "../../shared/guard/auth.guard";
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'edit-company/:id', component: EditCompanyComponent },
   {path: 'add-company',component:AddCompanyComponent},
   {path:'company-list',component:CompanyListComponent},
+  {path:'events', component:EventsComponent}
 ];
 
 @NgModule({

@@ -115,6 +115,15 @@
                     (matChipInputTokenEnd)="add($event, skills)">
                  </mat-chip-list>
               </mat-form-field>
+              <!--- Category -->
+              <mat-form-field appearance="outline" >
+               <mat-label>Company Tier</mat-label>
+               <mat-select formControlName="Tier">
+                  <mat-option *ngFor="let tier of tiers" [value]="tier" >
+                  {{tier}}
+                  </mat-option>
+               </mat-select >
+            </mat-form-field>
               <!-- Job Roles -->
               <mat-form-field appearance="outline" class="example-chip-list">
                  <mat-label>Job Roles</mat-label>

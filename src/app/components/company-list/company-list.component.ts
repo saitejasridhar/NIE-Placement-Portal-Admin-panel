@@ -17,7 +17,6 @@ import { CompanyService } from '../../shared/company.service';
 export class CompanyListComponent implements OnInit  {
   p: number = 1;                      // Settup up pagination variable
   datapresent: boolean = true; 
-  
   dataSource: MatTableDataSource<Company>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -48,6 +47,8 @@ export class CompanyListComponent implements OnInit  {
        }});
   }
 
+
+  
  
   // Method to delete student object
   deleteCompany(studentid) {
