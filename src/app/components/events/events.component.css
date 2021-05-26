@@ -1,0 +1,12 @@
+table, th, td {
+    border: 1px solid rgb(230, 230, 230);
+  }
+  tr:hover {background-color: #3d3d3d;}
+  /* tr:nth-child(even) {background-color: #f2f2f2;} */
+#modal{
+    border: 2px solid #242466; opacity:1;z-index:9999;   position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+                z-index: 999;
+}

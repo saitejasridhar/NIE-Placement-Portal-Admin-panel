@@ -1,4 +1,4 @@
 export class Event {
-    title: string;
-    description:string;
+    Name: string;
+    Description:string;
 }
