@@ -11,14 +11,9 @@ import {
   Validators,
   FormControl,
 } from "@angular/forms";
-import { finalize } from "rxjs/operators";
 import { Company } from "src/app/shared/company";
 import { MatChipInputEvent } from "@angular/material/chips";
-import { NgForm } from "@angular/forms";
 
-export interface Language {
-  name: string;
-}
 
 @Component({
   selector: "app-add-company",
@@ -48,37 +43,6 @@ export class AddCompanyComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
   companyForm: FormGroup;
-
-
-
-  ////////  CHIPS   //////////
-
-  roles: string[] = [];
-  skills: string[] = [];
-  batches: string[] = [];
-
-  add(event: MatChipInputEvent, array: Array<string>): void {
-    const value = (event.value || "").trim();
-    const input = event.input;
-
-    // Add our role
-    if (value) {
-      array.push(value);
-    }
-
-    // Clear the input value
-    input.value = "";
-  }
-
-  remove(role: any, array: Array<string>): void {
-    const index = array.indexOf(role);
-
-    if (index >= 0) {
-      array.splice(index, 1);
-    }
-  }
-
-
 
   constructor(
     public fb: FormBuilder,
@@ -136,6 +100,34 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm.get("Date").setValue(str, {
       onlyself: true,
     });
+  }
+
+
+  ////////  CHIPS   //////////
+
+  roles: string[] = [];
+  skills: string[] = [];
+  batches: string[] = [];
+
+  add(event: MatChipInputEvent, array: Array<string>): void {
+    const value = (event.value || "").trim();
+    const input = event.input;
+
+    // Add our role
+    if (value) {
+      array.push(value);
+    }
+
+    // Clear the input value
+    input.value = "";
+  }
+
+  remove(role: any, array: Array<string>): void {
+    const index = array.indexOf(role);
+
+    if (index >= 0) {
+      array.splice(index, 1);
+    }
   }
 
   /* Reset form */
