@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatProgressSpinnerModule, MatChipsModule} from '@angular/material';
 import { AngularMaterialModule } from './material.module';
 import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -8,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
   
 import {NgxPaginationModule} from 'ngx-pagination';
-
-
 
 
 // Reactive Form
@@ -32,6 +29,8 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import {  AngularFirestoreModule ,AngularFirestore} from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
@@ -44,6 +43,7 @@ import { CompanyService } from './shared/company.service';
 import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EventsComponent } from './components/events/events.component';
+import { StudentsComponent } from './components/students/students.component';
 
 
 
@@ -60,6 +60,7 @@ import { EventsComponent } from './components/events/events.component';
     EditCompanyComponent,
     NavBarComponent,
     EventsComponent,
+    StudentsComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -67,16 +68,16 @@ import { EventsComponent } from './components/events/events.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularMaterialModule,
-    MatProgressSpinnerModule,
     RichTextEditorAllModule,
     FormsModule,
     BrowserModule,
-    MatChipsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SmartTableModule,
+
   ],
   providers: [AuthService,CompanyService,AngularFirestore],
   bootstrap: [AppComponent],
