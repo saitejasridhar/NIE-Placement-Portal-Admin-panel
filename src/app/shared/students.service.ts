@@ -24,7 +24,6 @@ export class StudentService {
     return this.firestore.collectionGroup("Details").snapshotChanges();
   }
 
-
   // Error management
   private errorMgmt(error) {
     console.log(error)

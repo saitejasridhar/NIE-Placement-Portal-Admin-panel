@@ -92,9 +92,13 @@ export class CompanyDetailsComponent implements OnInit {
   id: any;
   data: any[];
   studentdata: any[];
+  studentdata1: any[];
   test2:any[];
   types:Array<string>;
   Name:string;
+  applied:Array<String>;
+  idstring:String;
+  god:boolean;
 
   constructor(public companyService: CompanyService,public fb: FormBuilder  ,public eventService: EventService, 
     private actRoute: ActivatedRoute,public router: Router, public studentService:StudentService) { 
@@ -104,6 +108,7 @@ export class CompanyDetailsComponent implements OnInit {
          (data:Company) => {
        this.Name= data.Name;
        });
+       this.studentdata1=[];
   }
 
   ngOnInit(): void {
@@ -119,17 +124,20 @@ export class CompanyDetailsComponent implements OnInit {
       });
       this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
         this.studentdata = actionArray.map((item) => {
-          console.log(item.payload.doc);
-          if(item.payload){
+          this.applied=item.payload.doc.data()['Applied'];
+          if(this.applied.includes(id.toString())){
             return {
               id: item.payload.doc.id,
               ...(item.payload.doc.data() as any),
             };
-          }
-     
+          }  
         });
+        this.studentdata1 = this.studentdata.filter(function( element ) {
+          return element !== undefined;
+       });
+       console.log(this.studentdata1); 
+
       });
-    
   }
 
   openDialog() {
