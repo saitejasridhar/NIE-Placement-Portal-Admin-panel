@@ -1,0 +1,111 @@
+<nav [style]="test" class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+    <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+    <span style=" border-left: 1px solid #242466 ;
+       height: 70px; margin-left: 8px;"></span>
+    PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+    </a>
+  </nav>
+  <nav [style]="test" class="col-md-2 d-md-block bg-light sidebar">
+    <app-nav-bar ></app-nav-bar>
+  </nav>
+  <!-- Main content -->
+  <div  style="height: 100%; width: 100%;z-index: 1;">
+    <main  role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+       <div [style]="test" class="inner-adjust">
+         <h1 style="margin-top: 40px; text-align: center;color: #242466;">{{Name}}</h1>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+             <h4  style="color: #242466;">Events</h4>
+             <button mat-raised-button style="float: right;background-color:#242466; color: white;" (click)="openDialog()">Create Event</button>
+          </div>
+          <div class="pricing-header mx-auto">
+            <ng2-smart-table (edit)="updateEvent($event.data)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
+          </div>
+       </div>
+       <div *ngIf = 'isOpen' class="authBlock" id="modal">
+          <h3 style="color: #242466">Add Event</h3>
+          <form [formGroup]="eventForm" #resetEventForm="ngForm" novalidate>
+            <mat-form-field style="width: 100%;"  appearance="outline" >
+               <mat-label>Type</mat-label>
+               <mat-select formControlName="type">
+                  <mat-option *ngFor="let type of types" [value]="type" >
+                  {{type}}
+                  </mat-option>
+               </mat-select >
+               <mat-error *ngIf="handleError('type', 'required')">
+                  You must provide a<strong>Type of event name</strong>
+               </mat-error>
+            </mat-form-field>
+          <mat-form-field style="width: 100%;"  appearance="outline" class="example-full-width" >
+             <mat-label>Description *</mat-label>
+             <textarea id="et" cols="500" rows="9
+                " matInput formControlName="description"></textarea>
+             <mat-error *ngIf="handleError('description', 'required')">
+                You must provide an <strong>a description</strong>
+             </mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;"   appearance="outline" hintLabel="" >
+            <mat-label>Enter Number of Current Backlogs</mat-label>
+            <input matInput formControlName="time" #input type="time">
+            <mat-error *ngIf="handleError('time', 'required')">
+               The value is lesser than the minimum
+            </mat-error>
+         </mat-form-field>
+          <mat-form-field style="width: 100%;" appearance="outline">
+            <input matInput readonly [matDatepicker]="picker" placeholder="Last Date to apply *"
+            formControlName="date" (dateChange)="formatDate($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="handleError('date', 'required')">
+               Blog date is required
+            </mat-error>
+         </mat-form-field>
+          </form>
+          <button *ngIf='isupdate' mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Update</button>
+          <button *ngIf='!isupdate' mat-button style="float: right;background-color:#242466; color: white;"(click)= "addevent(eventForm.value)">Add</button>
+          <button mat-button mat-dialog-close style="float: right; margin-right:10px;" (click)="closeDialog()">Close</button>
+       </div>
+       <div class="inner-adjust">
+       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
+         <ejs-tab id="element" >
+            <e-tabitems >
+                    <e-tabitem>
+                        <ng-template #headerText>
+                           <h4 style="color: #242466;"> Applied Students </h4>
+                        </ng-template>
+                        <ng-template #content>
+                           <div style="margin-top: 20px;">
+                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata"></ng2-smart-table>
+                           </div>
+                         </ng-template>
+                    </e-tabitem>
+                    <e-tabitem>
+                        <ng-template #headerText>
+                           <h4 style="color: #242466;"> Placed Students </h4>
+                        </ng-template>
+                        <ng-template #content>
+                           <div style="margin-top: 20px;">
+                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata"></ng2-smart-table>
+                           </div>
+                             </ng-template>
+                    </e-tabitem>
+                    <e-tabitem>
+                        <ng-template #headerText>
+                           <h4 style="color: #242466;" > Unplaced Students </h4>
+                        </ng-template>
+                        <ng-template #content>
+                           <div style="margin-top: 20px;">
+                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata"></ng2-smart-table>
+                           </div>
+                        </ng-template>
+                    </e-tabitem>
+                </e-tabitems>
+            </ejs-tab> 
+       </div>
+
+     </div>
+ 
+    </main>
+  </div>
+
+  

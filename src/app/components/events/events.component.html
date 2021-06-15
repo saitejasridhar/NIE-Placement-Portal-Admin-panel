@@ -18,33 +18,7 @@
            <button mat-raised-button style="float: right;background-color:#242466; color: white;" (click)="openDialog()">Add Annoncement</button>
         </div>
         <div class="pricing-header mx-auto">
-           <div *ngIf="!datapresent">
-              <h1>
-                 no  data
-              </h1>
-           </div>
-           <div style="overflow-x:auto; " class="table-responsive" *ngIf="datapresent">
-              <table  class="table table-hover" frame=void rules=rows style="border: 2px; border-radius: 10px;">
-                 <thead>
-                    <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230)">Name</th>
-                    <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);">Description</th>
-                    <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);" >Edit</th>
-                    <th style="padding: 10px; border-bottom:1px solid rgb(230, 230, 230);" >Delete</th>
-                 </thead>
-                 <tbody >
-                    <tr *ngFor="let emp of list">
-                       <td>{{emp.Name}}</td>
-                       <td>{{emp.Description}}</td>
-                       <td class="text-center action-block">
-                          <i style="color: red;" class="far fa-edit" (click)="updateEvent(emp)"></i>
-                       </td>
-                       <td class="text-center action-block">
-                          <i style="color: red;" class="far fa-trash-alt" (click)="deleteEvent(emp.id)"></i>
-                       </td>
-                    </tr>
-                 </tbody>
-              </table>
-           </div>
+         <ng2-smart-table (edit)="updateEvent($event.data)" (delete)="deleteEvent($event.data.id)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
         </div>
      </div>
      <div *ngIf = 'isOpen' class="authBlock" id="modal">

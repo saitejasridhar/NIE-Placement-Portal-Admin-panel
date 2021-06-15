@@ -14,7 +14,7 @@
        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h4  style="color: #242466;">Students List</h4>
        </div>
-       <ng2-smart-table (userRowSelect)="rowclick()" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
+       <ng2-smart-table (userRowSelect)="rowclick($event.data)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
     </div>
 
 
@@ -22,10 +22,51 @@
 
 
 
-    <div  style="height: 80%;width: 80%;background-color: #ffffff;" *ngIf = 'isOpen'  id="modal">
-       <h3 style="color: #242466;float: left;">*Students Name*</h3>
-       <span>name:</span><span>Sai</span>
-       <button mat-button mat-dialog-close style="float: right; margin-right:10px;" (click)="closeDialog()">Close</button>
+    <div  style="
+    width: 60%;background-color: #ffffff;" *ngIf = 'isOpen'  id="modal">
+    <div style="width: 94%; margin-left: 2%;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h4  style="color: #242466;">Neha Shetty</h4>
+   </div>      <div class="row" style="margin-top: 20px;">
+          <div class="column">
+            <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+              <p><b>USN</b> : 4NI17CS099 </p>
+              <p><b>Branch</b> : CSE </p>
+              <p><b>Semester</b> : 8th </p>
+              <p><b>Section</b> : B </p>
+              <p><b>E-mail</b> : neha@gmail.com </p>
+              <p><b>College e-mail</b> : 4ni17cs099_b@nie.ac.in </p>
+              <p><b>Phone number</b> : 9845673890 </p>
+              <p><b>Gaudian's phone number</b> : 1234567890 </p>
+              <p><b>DOB</b> : 03/04/1999 </p>
+              <p><b>Permanent Address</b> : #78, 2nd cross, yadavgiri, Mysore- 570016 </p>
+              </div>
+              </div>
+              <div class="column">
+              <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+              <p><b>10th Board</b> : CBSE </p>
+              <p><b>10th Institute</b> : JSS School </p>
+              <p><b>10th %</b> : 94 </p>
+              <p><b>10th passing year</b> : 2015 </p>
+              <p><b>12th Board</b> : State </p>
+              <p><b>12th Institute</b> : St. Joseph's </p>
+              <p><b>12th %</b> : 90 </p>
+              <p><b>12th passing year</b> : 2017 </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+              <p><b>1st sem sgpa</b> : 8 </p>
+              <p><b>2nd sem sgpa</b> : 8 </p>
+              <p><b>3rd sem sgpa</b> : 8 </p>
+              <p><b>4th sem sgpa</b> : 8 </p>
+              <p><b>5th sem sgpa</b> : 8 </p>
+              <p><b>cgpa</b> : 8 </p>
+              <p><b>Backlogs</b> : 0 </p>
+            </div>
+          </div>
+      </div>
+  
+       <button mat-button mat-dialog-close style="float: right; margin-right:10px; margin-bottom: 10px;" (click)="closeDialog()">Close</button>
     </div>
  </main>
 

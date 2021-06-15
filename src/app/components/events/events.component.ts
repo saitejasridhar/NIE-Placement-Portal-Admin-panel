@@ -9,6 +9,33 @@ import { EventService } from "../../shared/services/events.service";
   styleUrls: ["./events.component.css"],
 })
 export class EventsComponent implements OnInit {
+   data:any[];
+  settings = {
+    noDataMessage:"No Companies",
+    mode: 'external',
+    columns: {
+      Name: {
+        title: "Name",
+        filter: false,
+        width: '35%'
+      },
+      Description: {
+        title: "Description",
+        filter: false,
+        width: '60%'
+      },
+    },
+    actions: {
+      add: false,
+    },
+    pager: {
+      display: true,
+      perPage: 10,
+    },
+    attr: {
+      class: "table table-bordered",
+    },
+  };
   isOpen: boolean = false;
   selectedBindingType: string;
   eventForm: FormGroup;
@@ -22,19 +49,14 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitEventForm();
-    this.eventService.GetEventList().subscribe((actionArray) => {
-      this.list = actionArray.map((item) => {
-        return {
-          id: item.payload.doc.id,
-          ...(item.payload.doc.data() as Event),
-        };
-      });
-      if (this.list.length > 0) {
-        this.datapresent = true;
-      } else {
-        this.datapresent = false;
-      }
+  this.eventService.GetEventList().subscribe((actionArray) => {
+    this.data = actionArray.map((item) => {
+      return {
+        id: item.payload.doc.id,
+        ...(item.payload.doc.data() as any),
+      };
     });
+  });
   }
 
   submitEventForm() {

@@ -67,13 +67,13 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm = this.fb.group({
       Name: ["", [Validators.required]],
       Date: ["", [Validators.required]],
-      // aimage:['',[Validators.required]],
       Description: ["", [Validators.required]],
       Branch: ["", [Validators.required]],
       Cgpa: ["", [Validators.min(0), Validators.max(10)]],
       Tenth: ["", [Validators.min(0), Validators.max(100)]],
       Twelfth: ["", [Validators.min(0), Validators.max(100)]],
       Backlog: ["", [Validators.min(0)]],
+      ClBacklog: ["", [Validators.min(0)]],
       Offer: ["", []],
       Ctc: ["", []],
       Location: ["", []],
@@ -81,7 +81,9 @@ export class AddCompanyComponent implements OnInit {
       Skills: ["", []],
       Roles: ["", []],
       Batches:["", []],
-      Tier:["", []]
+      Tier:["", []],
+      AppliedStudents:["",[]]
+
     });
   }
 
@@ -146,6 +148,7 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm.value["Roles"] = this.roles;
     this.companyForm.value["Skills"] = this.skills;
     this.companyForm.value["Batches"] = this.batches;
+    this.companyForm.value["AppliedStudents"]=[];
     console.log(this.companyForm.value);
     if (this.companyForm.valid) {
       this.preview = true;

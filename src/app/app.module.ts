@@ -4,6 +4,7 @@ import { AngularMaterialModule } from './material.module';
 import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TabModule } from '@syncfusion/ej2-angular-navigations';
 
   
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -22,6 +23,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 // Firebase services + enviorment module
@@ -44,6 +47,7 @@ import { EditCompanyComponent } from './components/edit-company/edit-company.com
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EventsComponent } from './components/events/events.component';
 import { StudentsComponent } from './components/students/students.component';
+import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 
 
 
@@ -61,6 +65,7 @@ import { StudentsComponent } from './components/students/students.component';
     NavBarComponent,
     EventsComponent,
     StudentsComponent,
+    CompanyDetailsComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -77,6 +82,8 @@ import { StudentsComponent } from './components/students/students.component';
     AngularFirestoreModule,
     ReactiveFormsModule,
     Ng2SmartTableModule,
+    MatTabsModule,
+    TabModule
 
   ],
   providers: [AuthService,CompanyService,AngularFirestore],

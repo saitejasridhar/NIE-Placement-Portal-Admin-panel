@@ -16,4 +16,6 @@ export class Company{
   Tenth:number;
   Twelfth:number;
   Tier:string;
+  ClBacklog:number;
+  AppliedStudents:Array<string>;
 }

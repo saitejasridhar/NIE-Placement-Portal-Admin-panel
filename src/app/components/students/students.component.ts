@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CompanyService } from "../../shared/company.service";
+import { StudentService } from "../../shared/students.service";
 
 import { Company } from "../../shared/company";
 
@@ -13,17 +13,19 @@ export class StudentsComponent implements OnInit {
   isOpen: boolean = false;
   settings = {
     columns: {
-      Name: {
-        title: "ID",
+
+      USN: {
+        title: "USN",
       },
-      Ctc: {
-        title: "Full Name",
+      FName: {
+        title: "First Name",
+        // filter: false
       },
-      Skills: {
-        title: "User Name",
-      },
-      Cgpa: {
+      PEmail: {
         title: "Email",
+      },
+      Branch: {
+        title: "Branch",
       },
     },
 
@@ -42,10 +44,11 @@ export class StudentsComponent implements OnInit {
   };
   data: any[];
 
-  constructor(public companyService: CompanyService) {}
+  constructor(public studentService: StudentService) {}
 
-  rowclick() {
+  rowclick(event:any) {
     this.openDialog();
+    console.log(event.id);
   }
 
   openDialog() {
@@ -58,7 +61,7 @@ export class StudentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.companyService.GetCompanyList().subscribe((actionArray) => {
+    this.studentService.GetStudentList().subscribe((actionArray) => {
       this.data = actionArray.map((item) => {
         return {
           id: item.payload.doc.id,

@@ -45,6 +45,7 @@ AddCompany(company:Company){
     return this.firestore.doc('Companys/' + id).set({
       Branch:company.Branch,
         Backlog:company.Backlog,
+        ClBacklog:company.ClBacklog,
         Batches:company.Batches,
         Breakdown:company.Breakdown,
         Cgpa:company.Cgpa,
@@ -58,16 +59,48 @@ AddCompany(company:Company){
         Skills:company.Skills,
         Tenth:company.Tenth,
         Twelfth:company.Twelfth,
-        Tier:company.Tier
+        Tier:company.Tier,
+        AppliedStudents:company.AppliedStudents
   }).catch(error => {
       this.errorMgmt(error);
     })
   }
 
-
   /* Delete company */
   DeleteCompany(id: string) {
     return this.firestore.doc('Companys/' + id).delete();
+  }
+
+  getEventList(id:string){
+    return this.firestore.collection("Companys").doc(id).collection("events").snapshotChanges();
+  }
+
+  AddEvent(event:any,id:any){ 
+    return new Promise<any>((resolve, reject) => { 
+       this.firestore
+           .collection("Companys").doc(id).collection("events")
+           .add(event)
+           .then(
+               res => {}, 
+               err => alert(err.message)
+           )
+    }
+  )}
+
+
+   /* Update company */
+   UpdateEvent(id:string, event: any,idcompany:string) {
+    return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).set({
+      type:event.type,
+        date:event.date,
+        description:event.description,
+  }).catch(error => {
+      this.errorMgmt(error);
+    })
+  }
+
+  DeleteEvent(id: string,idcompany:string) {
+    return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).delete();
   }
 
   // Error management

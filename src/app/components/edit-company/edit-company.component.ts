@@ -50,6 +50,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
         this.editCompanyForm.controls['Date'].setValue(data.Date);
         this.editCompanyForm.controls['Description'].setValue(data.Description);
         this.editCompanyForm.controls['Backlog'].setValue(data.Backlog);
+        this.editCompanyForm.controls['ClBacklog'].setValue(data.ClBacklog);
         this.editCompanyForm.controls['Batches'].setValue("");
         this.editCompanyForm.controls['Branch'].setValue(data.Branch);
         this.editCompanyForm.controls['Breakdown'].setValue(data.Breakdown);
@@ -117,6 +118,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
       Tenth: ["", [Validators.min(0), Validators.max(100)]],
       Twelfth: ["", [Validators.min(0), Validators.max(100)]],
       Backlog: ["", [Validators.min(0)]],
+      ClBacklog:["", [Validators.min(0)]],
       Offer: ["", []],
       Tier: ["", []],
       Ctc: ["", []],
@@ -124,7 +126,8 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
       Breakdown: ["", []],
       Skills: ["", []],
       Roles: ["", []],
-      Batches:["", []]
+      Batches:["", []],
+      AppliedStudents:["",[]]
     })
   }
   
@@ -153,6 +156,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
       this.editCompanyForm.value["Roles"] = this.roles;
       this.editCompanyForm.value["Skills"] = this.skills;
       this.editCompanyForm.value["Batches"] = this.batches;
+      this.editCompanyForm.value["AppliedStudents"]=[];
       var id = this.actRoute.snapshot.paramMap.get('id');
       this.companyService.UpdateCompany(id, this.editCompanyForm.value);   
       this.router.navigate(['company-list']);  

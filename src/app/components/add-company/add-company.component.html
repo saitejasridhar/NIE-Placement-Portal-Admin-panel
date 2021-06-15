@@ -34,7 +34,7 @@
               <!--Description-->
               <mat-form-field appearance="outline" class="example-full-width" >
                  <mat-label>Breif Description *</mat-label>
-                 <textarea id="et" cols="500" rows="9
+                 <textarea id="et" cols="500" rows="10
                     " matInput formControlName="Description"></textarea>
                  <mat-error *ngIf="handleError('Description', 'required')">
                     You must provide an <strong>a description</strong>
@@ -94,6 +94,14 @@
                     The value is lesser than the minimum
                  </mat-error>
               </mat-form-field>
+
+              <mat-form-field appearance="outline" hintLabel="" >
+               <mat-label>Enter Number of Cleared Backlogs</mat-label>
+               <input matInput formControlName="ClBacklog" #input type="number" maxvalue="10" placeholder="Ex. 2">
+               <mat-error *ngIf="handleError('ClBacklog', 'min')">
+                  The value is lesser than the minimum
+               </mat-error>
+            </mat-form-field>
            </div>
         </mat-card>
         <!-- Right block---> 
@@ -160,7 +168,7 @@
               <!-- CTC Breakdown-->
               <mat-form-field appearance="outline" class="example-full-width" >
                  <mat-label>CTC Breakdown</mat-label>
-                 <textarea formControlName="Breakdown" cols="500" rows="4" matInput ></textarea>
+                 <textarea formControlName="Breakdown" cols="500" rows="5" matInput ></textarea>
               </mat-form-field>
               <!--- Batches --->
               <mat-form-field appearance="outline" class="example-chip-list">
@@ -194,23 +202,6 @@
               </mat-form-field>
            </div>
         </mat-card>
-        <!-- Right block 
-           <mat-card>
-             <div class="controlers-wrapper">
-               <!-- Image Picker
-           
-               <div class="text-centre">
-                <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
-               </div>
-               <label>Select file to upload</label>
-               <input type="file" formControlName="aimage" #fileUploader (change)="showPreview($event)">
-               <br>
-               <div>Prefered size 770*440</div>
-               <mat-error *ngIf="handleError('aimage', 'required')">
-                You must provide a<strong> Blog image</strong>
-              </mat-error>
-             </div>
-           </mat-card>-->
         <div>
         </div>
         <mat-card>
