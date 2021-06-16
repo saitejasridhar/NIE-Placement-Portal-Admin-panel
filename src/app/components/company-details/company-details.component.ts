@@ -12,7 +12,37 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./company-details.component.css']
 })
 export class CompanyDetailsComponent implements OnInit {
-  
+  blurbackground: string = "opacity:1";
+  studentname:String;
+  USN:String;
+  Sname:String;
+  Section:String;
+  PreUniQyear:String;
+  PreUniMarks:String;
+  PreUniInstitute:String;
+  PreUniBoard:String;
+  PreUni:String;
+  PerAddress:String;
+  PPhone:String;
+  PEmail:String;
+  GPhone:String;
+  SName:String;
+  CurSem:String;
+  CurArr:String;
+  CurAddress:String;
+  ClearArr:String;
+  CGPA:String;
+  Branch:String;
+  Batch:String;
+  TenthInstitute:String;
+  TenthMarks:String;
+  TenthQyear:String;
+  TenthBoard:String;
+  FName:String;
+  resume:String;
+  PlacedCompaies:Array<string>;
+  placedCname:string;
+  isOpenstudent:boolean;
   settings = {
     noDataMessage:"No Companies",
     mode: 'external',
@@ -68,11 +98,16 @@ export class CompanyDetailsComponent implements OnInit {
         title: "Branch",
       },
     },
-
+    selectMode: 'multi',
     actions: {
       add: false,
       edit: false,
       delete: false,
+      select: true,
+      custom: [
+        { name: 'viewrecord', title:'View' },
+      ],
+      position: 'right'
     },
     pager: {
       display: true,
@@ -93,12 +128,21 @@ export class CompanyDetailsComponent implements OnInit {
   data: any[];
   studentdata: any[];
   studentdata1: any[];
+  studentdataplaced: any[];
+  studentdataunplaced: any[];
   test2:any[];
   types:Array<string>;
   Name:string;
   applied:Array<String>;
   idstring:String;
   god:boolean;
+  placedstudents:Array<string>;
+  removeplacedstudents:Array<string>;
+  placed:Array<string>;
+  unplaced:Array<string>;
+  placedinapplied:Array<string>;
+  applieduplaced:Array<string>;
+
 
   constructor(public companyService: CompanyService,public fb: FormBuilder  ,public eventService: EventService, 
     private actRoute: ActivatedRoute,public router: Router, public studentService:StudentService) { 
@@ -109,9 +153,15 @@ export class CompanyDetailsComponent implements OnInit {
        this.Name= data.Name;
        });
        this.studentdata1=[];
+       this.placedstudents=[];
+       this.placed=[];
+       this.unplaced=[];
+       this.removeplacedstudents=[];
+       this.placedCname="";
+       this.isOpenstudent=false;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.submitEventForm();
       this.companyService.getEventList(id).subscribe((actionArray) => {
@@ -125,7 +175,8 @@ export class CompanyDetailsComponent implements OnInit {
       this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
         this.studentdata = actionArray.map((item) => {
           this.applied=item.payload.doc.data()['Applied'];
-          if(this.applied.includes(id.toString())){
+          this.placedinapplied=item.payload.doc.data()['PlacedAt']
+          if(this.applied.includes(id.toString()) && !this.placedinapplied.includes(id.toString())){
             return {
               id: item.payload.doc.id,
               ...(item.payload.doc.data() as any),
@@ -135,17 +186,95 @@ export class CompanyDetailsComponent implements OnInit {
         this.studentdata1 = this.studentdata.filter(function( element ) {
           return element !== undefined;
        });
-       console.log(this.studentdata1); 
+      });
 
+      this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
+        this.studentdataunplaced = actionArray.map((item) => {
+          this.unplaced=item.payload.doc.data()['PlacedAt'];
+          this.applieduplaced=item.payload.doc.data()['Applied'];
+          if(!this.unplaced.includes(id.toString()) && this.applieduplaced.includes(id.toString()) ){
+            return {
+              id: item.payload.doc.id,
+              ...(item.payload.doc.data() as any),
+            };
+          }  
+        });
+        this.studentdataunplaced = this.studentdataunplaced.filter(function( element ) {
+          return element !== undefined;
+       });
+      });
+
+      this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
+        this.studentdataplaced = actionArray.map((item) => {
+          this.placed=item.payload.doc.data()['PlacedAt'];
+          if(this.placed.includes(id.toString())){
+            return {
+              id: item.payload.doc.id,
+              ...(item.payload.doc.data() as any),
+            };
+          }  
+        });
+        this.studentdataplaced = this.studentdataplaced.filter(function( element ) {
+          return element !== undefined;
+       });
       });
   }
 
+  onCustomAction(event){
+    this.openDialogstudent();
+    this.studentname=event.id;
+    this.USN= event.USN;
+    this.Sname=event.Sname;
+    this.Section=event.Section;
+    this.PreUniQyear=event.PreUniQyear;
+    this.PreUniMarks=event.PreUniMarks;
+    this.PreUniInstitute=  event.PreUniInstitute;
+    this.PreUniBoard=event.PreUniBoard;
+    this.PreUni= event.PreUni;
+    this.PerAddress= event.PerAddress;
+    this.PPhone=event.PPhone;
+    this.PEmail= event.PEmail;
+    this.GPhone= event.GPhone;
+    this.SName= event.Sname;
+    this.FName=event.FName.concat(" ");
+    this.CurSem= event.CurSem;
+    this.CurArr=  event.CurArr;
+    this.CurAddress=event.CurAddress;
+    this.ClearArr=event.ClearArr;
+    this.CGPA=event.CGPA;
+    this.Branch=event.Branch;
+    this.Batch=event.Batch;
+    this.TenthInstitute=event.TenthInstitute;
+    this.TenthMarks=event.TenthMarks;
+    this.TenthQyear=event.TenthQyear;
+    this.TenthBoard= event.TenthBoard;
+    this.resume=event.resume;
+    this.PlacedCompaies=event.PlacedAt;
+
+for(var i in this.PlacedCompaies){
+  this.companyService.CompayIDtoName(this.PlacedCompaies[i]).subscribe(
+    (data:Company) => {
+  this.placedCname= this.placedCname.concat(data.Name).concat(", ");
+  });
+}
+  }
+
+  openDialogstudent(){
+    this.isOpenstudent=true;
+    
+  }
+
+  closeDialogstudent(){
+    this.isOpenstudent=false;
+    this.placedCname="";
+  }
   openDialog() {
     this.isupdate = false;
     this.isOpen = true;
     this.test = "opacity:0.1;pointer-events:none;";
   }
   closeDialog() {
+    this.placedCname="";
     this.isOpen = false;
     this.test = "opacity:1";
   }
@@ -156,7 +285,60 @@ export class CompanyDetailsComponent implements OnInit {
       date:["", [Validators.required]],
       description: ["", [Validators.required]],
       time: ["", [Validators.required]],
+      companyid: [""],
+      companyname: [""],
     });
+  }
+
+
+  rowclickremove(event){
+    console.log(event);
+    if(event.isSelected){
+      this.removeplacedstudents.push(event.data.id);
+    }
+    else{
+      const index = this.removeplacedstudents.indexOf(event.data.id, 0);
+if (index > -1) {
+  this.removeplacedstudents.splice(index, 1);
+}
+    } 
+  }
+  rowclick(event){
+    console.log(event);
+    if(event.isSelected){
+      this.placedstudents.push(event.data.id);
+    }
+    else{
+      const index = this.placedstudents.indexOf(event.data.id, 0);
+if (index > -1) {
+  this.placedstudents.splice(index, 1);
+}
+    } 
+
+  }
+
+  remove(){
+
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    this.companyService.Removeplacedstudents(id,this.removeplacedstudents).then(() => {
+    }, error => console.error(error));
+
+    for(var i in this.removeplacedstudents){
+      this.studentService.RemovePlacedCompany(this.removeplacedstudents[i],id).then(() => {
+      }, error => console.error(error));
+    }
+
+  }
+
+  onClick(){
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    this.companyService.addplacedstudents(id,this.placedstudents).then(() => {
+    }, error => console.error(error));
+
+    for(var i in this.placedstudents){
+      this.studentService.AddPlacedCompany(this.placedstudents[i],id).then(() => {
+      }, error => console.error(error));
+    }
   }
 
 
@@ -198,13 +380,13 @@ export class CompanyDetailsComponent implements OnInit {
   addevent(formValue: any) {
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (this.eventForm.valid) {
+      this.eventForm.value["companyid"]=this.actRoute.snapshot.paramMap.get('id');
+      this.eventForm.value["companyname"]=this.Name;
       this.companyService.AddEvent(formValue,id);
       alert("Upload Succsessfull");
       this.closeDialog();
     }
   }
-
- 
 
   onEdit(studentid){
     this.router.navigateByUrl('/edit-company/'+studentid);
@@ -218,6 +400,4 @@ export class CompanyDetailsComponent implements OnInit {
       }, error => console.error(error));
     }
   }
-
-
 }

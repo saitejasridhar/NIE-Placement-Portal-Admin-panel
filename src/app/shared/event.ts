@@ -1,4 +1,8 @@
 export class Event {
-    Name: string;
-    Description:string;
+    type: string;
+    description:string;
+    companyid: string;
+    companyname: string;
+    date:string;
+    time:string;
 }

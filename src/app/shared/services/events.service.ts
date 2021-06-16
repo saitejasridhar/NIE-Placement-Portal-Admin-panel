@@ -42,8 +42,12 @@ AddEvent(event:Event){
   /* Update company */
   UpdateEvent(id, company: Event) {
     return this.firestore.doc('Announcments/' + id).set({
-    Name:company.Name,
-    Description:company.Description,
+    type:company.type,
+    description:company.description,
+    date:company.date,
+    companyname:company.companyname,
+    companyid:company.companyid,
+    time:company.time
   
   }).catch(error => {
       this.errorMgmt(error);

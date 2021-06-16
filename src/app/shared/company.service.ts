@@ -3,6 +3,8 @@ import { Company } from './company';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { CompileSummaryKind } from '@angular/compiler';
+import { firestore } from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +105,29 @@ AddCompany(company:Company){
     return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).delete();
   }
 
+  addplacedstudents(companyid:string,students:Array<string>){
+    for(var i in students){
+      this.firestore.collection("Companys").doc(companyid).update({
+        Placed: firestore.FieldValue.arrayUnion(students[i])
+      });
+    }
+    return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+  }
+
+
+  Removeplacedstudents(companyid:string,students:Array<string>){
+    for(var i in students){
+      this.firestore.collection("Companys").doc(companyid).update({
+        Placed: firestore.FieldValue.arrayRemove(students[i])
+      });
+    }
+    return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+  }
+
+  CompayIDtoName(companyid:string){
+    return this.firestore.collection('Companys').doc(companyid).valueChanges();
+  }
+  
   // Error management
   private errorMgmt(error) {
     console.log(error)

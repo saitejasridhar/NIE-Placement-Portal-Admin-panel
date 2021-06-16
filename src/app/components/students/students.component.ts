@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { StudentService } from "../../shared/students.service";
 
 import { Company } from "../../shared/company";
+import {CompanyService} from "../../shared/company.service"
 
 @Component({
   selector: "app-students",
@@ -38,6 +39,8 @@ export class StudentsComponent implements OnInit {
   TenthBoard:String;
   FName:String;
   resume:String;
+  PlacedCompaies:Array<string>;
+  placedCname:string;
 
   settings = {
     columns: {
@@ -72,7 +75,10 @@ export class StudentsComponent implements OnInit {
   };
   data: any[];
 
-  constructor(public studentService: StudentService) {}
+  constructor(public studentService: StudentService, public companyService:CompanyService) {
+    this.placedCname="";
+  }
+  
 
   rowclick(event:any) {
     this.openDialog();
@@ -103,12 +109,20 @@ export class StudentsComponent implements OnInit {
     this.TenthQyear=event.TenthQyear;
     this.TenthBoard= event.TenthBoard;
     this.resume=event.resume;
-    console.log(event);
+    this.PlacedCompaies=event.PlacedAt;
 
-  }
+for(var i in this.PlacedCompaies){
+  this.companyService.CompayIDtoName(this.PlacedCompaies[i]).subscribe(
+    (data:Company) => {
+  this.placedCname= this.placedCname.concat(data.Name).concat(", ");
+  });
+  this.placedCname= this.placedCname.substring(0, this.placedCname.length - 1);
+}
+}
 
   openDialog() {
     this.isOpen = true;
+    this.placedCname="";
     this.blurbackground = "opacity:0.1;pointer-events:none;";
   }
   closeDialog() {

@@ -65,9 +65,9 @@
           <button *ngIf='!isupdate' mat-button style="float: right;background-color:#242466; color: white;"(click)= "addevent(eventForm.value)">Add</button>
           <button mat-button mat-dialog-close style="float: right; margin-right:10px;" (click)="closeDialog()">Close</button>
        </div>
-       <div class="inner-adjust">
+       <div [style]="test" class="inner-adjust">
        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
-         <ejs-tab id="element" >
+         <ejs-tab id="element">
             <e-tabitems >
                     <e-tabitem>
                         <ng-template #headerText>
@@ -75,8 +75,9 @@
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata1"></ng2-smart-table>
+                              <ng2-smart-table (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" (userRowSelect)="rowclick($event)" [source]="studentdata1"></ng2-smart-table>
                            </div>
+                           <button (click)="onClick()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Placed</button>
                          </ng-template>
                     </e-tabitem>
                     <e-tabitem>
@@ -85,8 +86,9 @@
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata1"></ng2-smart-table>
+                              <ng2-smart-table  (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" (userRowSelect)="rowclickremove($event)" [source]="studentdataplaced"></ng2-smart-table>
                            </div>
+                           <button (click)="remove()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Remove</button>
                              </ng-template>
                     </e-tabitem>
                     <e-tabitem>
@@ -95,7 +97,7 @@
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdata1"></ng2-smart-table>
+                              <ng2-smart-table (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdataunplaced"></ng2-smart-table>
                            </div>
                         </ng-template>
                     </e-tabitem>
@@ -103,6 +105,48 @@
             </ejs-tab> 
        </div>
 
+     </div>
+
+     <div  style="
+     width: 40%;background-color: #ffffff;" *ngIf = 'isOpenstudent'  id="modal">
+     <div style="width: 94%; margin-left: 2%;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+       <h4  style="color: #242466;">{{FName}}{{Sname}}</h4>
+    </div>      <div class="row" style="margin-top: 20px;">
+           <div class="column">
+             <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+               <p><b>USN</b>  {{USN}} </p>
+               <p><b>Branch</b> : {{Branch}} </p>
+               <p><b>Semester</b> : {{CurSem}}  </p>
+               <p><b>Section</b> : {{Section}} </p>
+               <p><b>E-mail</b> : {{PEmail}}</p>
+               <p><b>College e-mail</b> : {{PEmail}} </p>
+               <p><b>Phone number</b> : {{PEmail}} </p>
+               <p><b>Gaudian's phone number</b> : {{GPhone}} </p>
+               <p><b>DOB</b> : 03/04/1999 </p>
+               <p><b>Permanent Address</b> : {{PerAddress}} </p>
+               </div>
+               </div>
+               <div class="column">
+               <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+               <p><b>10th Board</b> : {{TenthBoard}} </p>
+               <p><b>10th Institute</b> : {{TenthInstitute}} </p>
+               <p><b>10th %</b> : {{TenthMarks}} </p>
+               <p><b>10th passing year</b> : {{TenthQyear}} </p>
+               <p><b>12th Board</b> : {{PreUniBoard}}</p>
+               <p><b>12th Institute</b> : {{PreUniInstitute}} </p>
+               <p><b>12th %</b> : {{PreUniMarks}} </p>
+               <p><b>12th passing year</b> : {{PreUniQyear}} </p>
+               <p><b>cgpa</b> : {{CGPA}} </p>
+               <p><b>Current Backlogs</b> : {{CurArr}} </p>
+               <p><b>Cleared Backlogs</b> : {{ClearArr}} </p>
+             </div>
+             <div class="column">
+                <p><b>Placed Companies</b>: {{placedCname}}</p>
+             </div>
+           </div>
+       </div>
+       <p style="float: right; margin-right:10px; margin-bottom: 10px;"> <a href={{resume}}><button mat-flat-button color="warn" style="background-color:#242466;" >View Resume</button></a></p>
+        <button mat-button mat-dialog-close style="float: right; margin-right:10px; margin-bottom: 10px;" (click)="closeDialogstudent()">Close</button>
      </div>
  
     </main>
