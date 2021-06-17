@@ -82,8 +82,9 @@ export class AddCompanyComponent implements OnInit {
       Roles: ["", []],
       Batches:["", []],
       Tier:["", []],
-      AppliedStudents:["",[]]
-
+      AppliedStudents:["",[]],
+      Placed:["",[]],
+      isHistory:["",[]]
     });
   }
 
@@ -149,6 +150,8 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm.value["Skills"] = this.skills;
     this.companyForm.value["Batches"] = this.batches;
     this.companyForm.value["AppliedStudents"]=[];
+    this.companyForm.value["Placed"]=[];
+    this.companyForm.value["isHistory"]="false"
     console.log(this.companyForm.value);
     if (this.companyForm.valid) {
       this.preview = true;

@@ -48,6 +48,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EventsComponent } from './components/events/events.component';
 import { StudentsComponent } from './components/students/students.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
+import { HistoryComponent } from './components/history/history.component';
+import { CompanyHistoryComponent } from './components/company-history/company-history.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
@@ -66,6 +70,8 @@ import { CompanyDetailsComponent } from './components/company-details/company-de
     EventsComponent,
     StudentsComponent,
     CompanyDetailsComponent,
+    HistoryComponent,
+    CompanyHistoryComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -83,7 +89,8 @@ import { CompanyDetailsComponent } from './components/company-details/company-de
     ReactiveFormsModule,
     Ng2SmartTableModule,
     MatTabsModule,
-    TabModule
+    TabModule,
+    MatSlideToggleModule
 
   ],
   providers: [AuthService,CompanyService,AngularFirestore],

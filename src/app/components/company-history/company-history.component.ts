@@ -7,11 +7,11 @@ import { StudentService } from '../../shared/students.service'
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-company-details',
-  templateUrl: './company-details.component.html',
-  styleUrls: ['./company-details.component.css']
+  selector: 'app-company-history',
+  templateUrl: './company-history.component.html',
+  styleUrls: ['./company-history.component.css']
 })
-export class CompanyDetailsComponent implements OnInit {
+export class CompanyHistoryComponent implements OnInit {
   blurbackground: string = "opacity:1";
   studentname:String;
   USN:String;
@@ -98,7 +98,6 @@ export class CompanyDetailsComponent implements OnInit {
         title: "Branch",
       },
     },
-    selectMode: 'multi',
     actions: {
       add: false,
       edit: false,
@@ -263,6 +262,10 @@ for(var i in this.PlacedCompaies){
     this.isOpenstudent=true;  
   }
 
+  back(){
+    this.router.navigate(['company-list']);  
+  }
+
   closeDialogstudent(){
     this.isOpenstudent=false;
     this.placedCname="";
@@ -351,10 +354,7 @@ if (index > -1) {
       this.studentService.AddrejectedCompany(this.studentdataunplaced[i].id,id).then(() => {
       }, error => console.error(error));
      }
-
-     this.companyService.moveCompany(id).then(() => {
-    }, error => console.error(error));
-    this.router.navigate(['history']); 
+   
   
   }
 
@@ -371,10 +371,6 @@ if (index > -1) {
     this.eventForm.get("date").setValue(str, {
       onlyself: true,
     });
-  }
-
-  back(){
-    this.router.navigate(['company-list']);  
   }
 
   updateEvent(event) {

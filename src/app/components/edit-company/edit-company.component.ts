@@ -137,13 +137,15 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
   }
 
   /* Date */
-  formatDate(e: { target: { value: string | number | Date; }; }) {
+  formatDate(e: { target: { value: string | number | Date } }) {
     var convertDate = new Date(e.target.value);
     var str;
-    str = new Date(convertDate.getTime() + (1000 * 60 * 60 * 24)).toISOString().substr(0,10);
-    this.editCompanyForm.get('adate').setValue(str, {
-      onlyself: true
-    })
+    str = new Date(convertDate.getTime() + 1000 * 60 * 60 * 24)
+      .toISOString()
+      .substr(0, 10);
+    this.editCompanyForm.get("Date").setValue(str, {
+      onlyself: true,
+    });
   }
 
   /* Go to previous page */

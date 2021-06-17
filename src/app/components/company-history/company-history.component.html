@@ -13,17 +13,17 @@
   <div  style="height: 100%; width: 100%;z-index: 1;">
     <main  role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
        <div [style]="test" class="inner-adjust">
-         <button (click)="finish()" mat-button style="float: right;background-color:#b31414; color: white;">Finish</button>
-         <button (click)="back()" mat-stroked-button style="float: right; color: #b31414; margin-right: 10px;">Back</button>
+         <!-- <button (click)="finish()" mat-button style="float: right;background-color:#b31414; color: white;">Finish</button> -->
+         <button (click)="back()" mat-stroked-button style="float: right; color: #b31414;">Back</button>
 
          <h1 style="margin-top: 40px; text-align: center;color: #242466;">{{Name}}</h1>
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
              <h4  style="color: #242466;">Events</h4>
              <button mat-raised-button style="float: right;background-color:#242466; color: white;" (click)="openDialog()">Create Event</button>
-          </div>
-          <div class="pricing-header mx-auto">
+          </div> -->
+          <!-- <div class="pricing-header mx-auto">
             <ng2-smart-table (edit)="updateEvent($event.data)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
-          </div>
+          </div> -->
        </div>
        <div *ngIf = 'isOpen' class="authBlock" id="modal">
           <h3 style="color: #242466">Add Event</h3>
@@ -72,7 +72,7 @@
        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
          <ejs-tab id="element">
             <e-tabitems >
-                    <e-tabitem>
+                    <!-- <e-tabitem>
                         <ng-template #headerText>
                            <h4 style="color: #242466;"> Applied Students </h4>
                         </ng-template>
@@ -82,7 +82,7 @@
                            </div>
                            <button (click)="onClick()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Placed</button>
                          </ng-template>
-                    </e-tabitem>
+                    </e-tabitem> -->
                     <e-tabitem>
                         <ng-template #headerText>
                            <h4 style="color: #242466;"> Placed Students </h4>
@@ -91,7 +91,7 @@
                            <div style="margin-top: 20px;">
                               <ng2-smart-table  (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" (userRowSelect)="rowclickremove($event)" [source]="studentdataplaced"></ng2-smart-table>
                            </div>
-                           <button (click)="remove()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Remove</button>
+                           <!-- <button (click)="remove()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Remove</button> -->
                              </ng-template>
                     </e-tabitem>
                     <e-tabitem>

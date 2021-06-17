@@ -1,0 +1,48 @@
+#modal{
+    border: 2px solid #242466; opacity:1;z-index:9999;   position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+                z-index: 999;
+}
+td.e-rowcell.e-inputbox.e-updatedtd.e-selectionbackground.e-active { 
+    border-bottom: 1px solid #b1a8ab; 
+  } 
+
+* {
+    box-sizing: border-box;
+  }
+  
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Style the counter cards */
+  .card {
+    padding: 16px;
+    background-color: white;
+  }

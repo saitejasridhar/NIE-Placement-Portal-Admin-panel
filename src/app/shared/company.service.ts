@@ -44,7 +44,7 @@ AddCompany(company:Company){
 
   /* Update company */
   UpdateCompany(id, company: Company) {
-    return this.firestore.doc('Companys/' + id).set({
+    return this.firestore.doc('Companys/' + id).update({
       Branch:company.Branch,
         Backlog:company.Backlog,
         ClBacklog:company.ClBacklog,
@@ -62,7 +62,6 @@ AddCompany(company:Company){
         Tenth:company.Tenth,
         Twelfth:company.Twelfth,
         Tier:company.Tier,
-        AppliedStudents:company.AppliedStudents
   }).catch(error => {
       this.errorMgmt(error);
     })
@@ -89,10 +88,9 @@ AddCompany(company:Company){
     }
   )}
 
-
    /* Update company */
    UpdateEvent(id:string, event: any,idcompany:string) {
-    return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).set({
+    return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).update({
       type:event.type,
         date:event.date,
         description:event.description,
@@ -114,6 +112,27 @@ AddCompany(company:Company){
     return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
   }
 
+  moveCompany(idcompany:string){
+    return this.firestore.collection('Companys').doc(idcompany).update({
+      isHistory:"true"
+  }).catch(error => {
+      this.errorMgmt(error);
+    })
+  }
+
+  getisallchecked(){
+   return this.firestore.collection('Admin').doc("admin").valueChanges();
+}
+
+setisallchecked(istrue:boolean){
+  return this.firestore.collection('Admin').doc("admin").update({
+    Allow:istrue
+  }).catch(error => {
+    this.errorMgmt(error);
+  })
+}
+
+
 
   Removeplacedstudents(companyid:string,students:Array<string>){
     for(var i in students){
@@ -123,6 +142,18 @@ AddCompany(company:Company){
     }
     return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
   }
+
+
+  Rejectedstudents(companyid:string,studentid:Array<any>){
+
+    for(var i in studentid){
+      this.firestore.collection("Companys").doc(companyid).update({
+        Rejected: firestore.FieldValue.arrayUnion(studentid[i].id)
+      });
+    }
+    return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+  }
+
 
   CompayIDtoName(companyid:string){
     return this.firestore.collection('Companys').doc(companyid).valueChanges();

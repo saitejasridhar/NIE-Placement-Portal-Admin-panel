@@ -13,8 +13,9 @@
     <div [style]="blurbackground" class="inner-adjust">
        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h4  style="color: #242466;">Students List</h4>
+          <mat-slide-toggle (change)="changeall($event)" [checked]="isAllChecked" color=primary><span style="font-size: 16px;">Allow edit Profile</span></mat-slide-toggle>
        </div>
-       <ng2-smart-table (userRowSelect)="rowclick($event.data)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
+       <ng2-smart-table  (userRowSelect)="rowclick($event.data)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
     </div>
 
 
@@ -26,6 +27,7 @@
     width: 40%;background-color: #ffffff;" *ngIf = 'isOpen'  id="modal">
     <div style="width: 94%; margin-left: 2%;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h4  style="color: #242466;">{{FName}}{{Sname}}</h4>
+      <button  (click)="applychanges()" mat-flat-button color="warn" style="background-color:#242466;" >Apply</button>
    </div>      <div class="row" style="margin-top: 20px;">
           <div class="column">
             <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
@@ -55,10 +57,14 @@
               <p><b>Current Backlogs</b> : {{CurArr}} </p>
               <p><b>Cleared Backlogs</b> : {{ClearArr}} </p>
             </div>
-            <div class="column">
-               <p><b>Placed Companies</b>: {{placedCname}}</p>
-            </div>
+           
           </div>
+          <div class="column">
+            <div class="card" style="color: #242466; font-family: 'Poppins', sans-serif">
+               <p><b>Placed Companies</b>: {{placedCname}}</p>
+               <mat-slide-toggle (change)="toggle($event)" [checked]="isChecked" color=primary><span style="font-size: 16px;">Allow edit Profile</span></mat-slide-toggle>
+            </div>
+         </div>
       </div>
       <p style="float: right; margin-right:10px; margin-bottom: 10px;"> <a href={{resume}}><button mat-flat-button color="warn" style="background-color:#242466;" >View Resume</button></a></p>
        <button mat-button mat-dialog-close style="float: right; margin-right:10px; margin-bottom: 10px;" (click)="closeDialog()">Close</button>

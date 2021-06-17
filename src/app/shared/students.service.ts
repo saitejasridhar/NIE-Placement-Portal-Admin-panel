@@ -32,6 +32,22 @@ export class StudentService {
       });;
   }
 
+
+  AddrejectedCompany(students:string,compnayid:string){  
+    return this.firestore.collection("students").doc(students).collection("Details").doc(students).update({
+      Rejected: firestore.FieldValue.arrayUnion(compnayid)
+    });
+  }
+
+updatepermission(studentid:string,torf:string){
+  return this.firestore.collection('students').doc(studentid).collection("Details").doc(studentid).update({
+    AllowEdit:torf
+}).catch(error => {
+    this.errorMgmt(error);
+  })
+}
+
+
   RemovePlacedCompany(studentid:string,companyid:string ){
     return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
         PlacedAt: firestore.FieldValue.arrayRemove(companyid)

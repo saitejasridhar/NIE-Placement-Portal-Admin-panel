@@ -18,4 +18,6 @@ export class Company{
   Tier:string;
   ClBacklog:number;
   AppliedStudents:Array<string>;
+  Placed:Array<string>;
+  isHistory:string;
 }

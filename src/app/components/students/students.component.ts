@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { StudentService } from "../../shared/students.service";
-
 import { Company } from "../../shared/company";
 import {CompanyService} from "../../shared/company.service"
 
@@ -10,9 +9,11 @@ import {CompanyService} from "../../shared/company.service"
   styleUrls: ["./students.component.css"],
 })
 export class StudentsComponent implements OnInit {
+  isChecked = false;
+  isAllChecked=false;
   blurbackground: string = "opacity:1";
   isOpen: boolean = false;
-  studentname:String;
+  studentname:string;
   USN:String;
   Sname:String;
   Section:String;
@@ -41,6 +42,7 @@ export class StudentsComponent implements OnInit {
   resume:String;
   PlacedCompaies:Array<string>;
   placedCname:string;
+  AllowEdit:string;
 
   settings = {
     columns: {
@@ -77,8 +79,20 @@ export class StudentsComponent implements OnInit {
 
   constructor(public studentService: StudentService, public companyService:CompanyService) {
     this.placedCname="";
+
   }
-  
+
+  onCustomAction(){}
+  applychanges(){
+    console.log(this.isChecked)
+  }
+
+  toggle(event){
+    this.isChecked=event.checked;
+    console.log(this.studentname);
+    this.studentService.updatepermission(this.studentname,event.checked.toString()).then(() => {
+    }, error => console.error(error));
+  }
 
   rowclick(event:any) {
     this.openDialog();
@@ -110,6 +124,7 @@ export class StudentsComponent implements OnInit {
     this.TenthBoard= event.TenthBoard;
     this.resume=event.resume;
     this.PlacedCompaies=event.PlacedAt;
+    this.isChecked=event.AllowEdit;
 
 for(var i in this.PlacedCompaies){
   this.companyService.CompayIDtoName(this.PlacedCompaies[i]).subscribe(
@@ -118,8 +133,20 @@ for(var i in this.PlacedCompaies){
   });
   this.placedCname= this.placedCname.substring(0, this.placedCname.length - 1);
 }
+    this.AllowEdit=event.AllowEdit
+ 
 }
 
+
+changeall(event){
+  console.log(this.data[0].id);
+  this.companyService.setisallchecked(event.checked).then(() => {
+  }, error => console.error(error));
+  for(var i in this.data){
+    this.studentService.updatepermission(this.data[i].id,event.checked.toString()).then(() => {
+    }, error => console.error(error));
+  }
+}
   openDialog() {
     this.isOpen = true;
     this.placedCname="";
@@ -130,6 +157,8 @@ for(var i in this.PlacedCompaies){
     this.blurbackground = "opacity:1";
   }
 
+
+
   ngOnInit() {
     this.studentService.GetStudentList().subscribe((actionArray) => {
       this.data = actionArray.map((item) => {
@@ -139,5 +168,11 @@ for(var i in this.PlacedCompaies){
         };
       });
     });
+    this.companyService.getisallchecked().subscribe(
+      (data:any) => {
+    this.isAllChecked=data.Allow;
+    });
   }
+
+  
 }

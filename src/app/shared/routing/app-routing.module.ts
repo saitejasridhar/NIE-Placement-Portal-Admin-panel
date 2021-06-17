@@ -10,6 +10,8 @@ import { EditCompanyComponent } from '../../components/edit-company/edit-company
 import {EventsComponent} from '../../components/events/events.component';
 import { StudentsComponent} from '../../components/students/students.component'
 import { CompanyDetailsComponent } from '../../components/company-details/company-details.component'
+import { HistoryComponent } from '../../components/history/history.component'
+import {CompanyHistoryComponent } from '../../components/company-history/company-history.component'
 
 
 import { AuthGuard } from "../../shared/guard/auth.guard";
@@ -27,7 +29,9 @@ const routes: Routes = [
   {path:'company-list',component:CompanyListComponent},
   {path:'events', component:EventsComponent},
   {path:'students',component:StudentsComponent},
-  {path:'company-details/:id',component:CompanyDetailsComponent}
+  {path:'company-details/:id',component:CompanyDetailsComponent},
+  {path:'history',component:HistoryComponent},
+  {path:'history/:id',component:CompanyHistoryComponent},
 ];
 
 @NgModule({

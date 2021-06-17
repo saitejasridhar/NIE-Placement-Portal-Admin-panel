@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
 import { CompanyService } from '../../shared/company.service';
 
 @Component({
-  selector: 'app-company-list',
-  templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.css']
+  selector: 'app-history',
+  templateUrl: './history.component.html',
+  styleUrls: ['./history.component.css']
 })
 
 
-export class CompanyListComponent implements OnInit  {
+export class HistoryComponent implements OnInit  {
   isHistory:string;
   settings = {
     noDataMessage:"No Companies",
@@ -46,6 +46,8 @@ export class CompanyListComponent implements OnInit  {
 
     actions: {
       add: false,
+      edit:false,
+      delete:false,
       width: '20%',
       position: 'right',
     },
@@ -72,7 +74,7 @@ export class CompanyListComponent implements OnInit  {
     this.companyService.GetCompanyList().subscribe((actionArray) => {
       this.data = actionArray.map((item) => {
         this.isHistory=item.payload.doc.data()['isHistory'];
-        if(this.isHistory==="false"){
+        if(this.isHistory==="true"){
           return {
             id: item.payload.doc.id,
             ...(item.payload.doc.data() as any),
@@ -83,12 +85,11 @@ export class CompanyListComponent implements OnInit  {
         return element !== undefined;
      });
     });
-    }
-
+  }
 
   rowclick(data)
   {
-    this.router.navigateByUrl('/company-details/'+data);
+    this.router.navigateByUrl('/history/'+data);
   }
 
   onEdit(studentid){
