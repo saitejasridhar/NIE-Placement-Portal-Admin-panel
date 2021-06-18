@@ -41,10 +41,34 @@ export class StudentService {
 
 updatepermission(studentid:string,torf:string){
   return this.firestore.collection('students').doc(studentid).collection("Details").doc(studentid).update({
-    AllowEdit:torf
+    InProgress:torf
 }).catch(error => {
     this.errorMgmt(error);
   })
+}
+
+removeInprogress(studentid:any,compnayid:string){
+  return this.firestore.collection("students").doc(studentid.id).collection("Details").doc(studentid.id).update({
+    InProgress: firestore.FieldValue.arrayRemove(compnayid)
+  });
+}
+
+addInprogress(studentid:string,compnayid:string){
+  return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+    InProgress: firestore.FieldValue.arrayUnion(compnayid)
+  });
+}
+
+removeInprogress1(studentid:any,compnayid:string){
+  return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+    InProgress: firestore.FieldValue.arrayRemove(compnayid)
+  });
+}
+
+addInprogress1(studentid:string,compnayid:string){
+  return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+    InProgress: firestore.FieldValue.arrayUnion(compnayid)
+  });
 }
 
 

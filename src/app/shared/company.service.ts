@@ -132,6 +132,41 @@ setisallchecked(istrue:boolean){
   })
 }
 
+Removeinprogressstudents(companyid:string,students:Array<any>){
+  for(var i in students){
+    this.firestore.collection("Companys").doc(companyid).update({
+      InProgress: firestore.FieldValue.arrayRemove(students[i].id)
+    });
+  }
+  return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+}
+
+Removeinprogressstudents1(companyid:string,students:Array<any>){
+  for(var i in students){
+    this.firestore.collection("Companys").doc(companyid).update({
+      InProgress: firestore.FieldValue.arrayRemove(students[i])
+    });
+  }
+  return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+}
+
+Addinprogressstudents(companyid:string,students:Array<any>){
+  for(var i in students){
+    this.firestore.collection("Companys").doc(companyid).update({
+      InProgress: firestore.FieldValue.arrayUnion(students[i].id)
+    });
+  }
+  return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+}
+
+Addinprogressstudents1(companyid:string,students:Array<any>){
+  for(var i in students){
+    this.firestore.collection("Companys").doc(companyid).update({
+      InProgress: firestore.FieldValue.arrayUnion(students[i])
+    });
+  }
+  return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+}
 
 
   Removeplacedstudents(companyid:string,students:Array<string>){

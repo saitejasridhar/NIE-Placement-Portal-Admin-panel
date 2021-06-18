@@ -72,13 +72,25 @@
        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
          <ejs-tab id="element">
             <e-tabitems >
+
+               <e-tabitem>
+                  <ng-template #headerText>
+                     <h4 style="color: #242466;"> Applied Students </h4>
+                  </ng-template>
+                  <ng-template #content>
+                     <div style="margin-top: 20px;">
+                        <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="appliedsettings" (userRowSelect)="rowclick($event)" [source]="allappliedstudents"></ng2-smart-table>
+                     </div>
+                  </ng-template>
+              </e-tabitem>
+
                     <e-tabitem>
                         <ng-template #headerText>
-                           <h4 style="color: #242466;"> Applied Students </h4>
+                           <h4 style="color: #242466;"> Inprogress Students </h4>
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" (userRowSelect)="rowclick($event)" [source]="studentdata1"></ng2-smart-table>
+                              <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="settings1" (userRowSelect)="rowclick($event)" [source]="studentdata1"></ng2-smart-table>
                            </div>
                            <button (click)="onClick()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Placed</button>
                          </ng-template>
@@ -89,7 +101,7 @@
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table  (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" (userRowSelect)="rowclickremove($event)" [source]="studentdataplaced"></ng2-smart-table>
+                              <ng2-smart-table  (custom)="onCustomAction($event.data)"  [settings]="settings1" (userRowSelect)="rowclickremove($event)" [source]="studentdataplaced"></ng2-smart-table>
                            </div>
                            <button (click)="remove()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Remove</button>
                              </ng-template>
@@ -100,7 +112,7 @@
                         </ng-template>
                         <ng-template #content>
                            <div style="margin-top: 20px;">
-                              <ng2-smart-table (custom)="onCustomAction($event.data)"  (editAction)="onEdit($event.data.id)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings1" [source]="studentdataunplaced"></ng2-smart-table>
+                              <ng2-smart-table (custom)="onCustomAction($event.data)" [settings]="settings1" [source]="studentdataunplaced"></ng2-smart-table>
                            </div>
                         </ng-template>
                     </e-tabitem>

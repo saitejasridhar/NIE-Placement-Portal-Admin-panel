@@ -81,6 +81,41 @@ export class CompanyDetailsComponent implements OnInit {
     },
   };
 
+  appliedsettings={
+    columns: {
+      USN: {
+        title: "USN",
+      },
+      FName: {
+        title: "First Name",
+        // filter: false
+      },
+      PEmail: {
+        title: "Email",
+      },
+      Branch: {
+        title: "Branch",
+      },
+    },
+    actions: {
+      add: false,
+      edit: false,
+      delete: false,
+      select: true,
+      custom: [
+        { name: 'viewrecord', title:'View' },
+      ],
+      position: 'right'
+    },
+    pager: {
+      display: true,
+      perPage: 10,
+    },
+    attr: {
+      class: "table table-bordered",
+    },
+  };
+
   settings1= {
     columns: {
 
@@ -128,12 +163,14 @@ export class CompanyDetailsComponent implements OnInit {
   data: any[];
   studentdata: any[];
   studentdata1: any[];
+  allappliedstudents:any[];
   studentdataplaced: any[];
   studentdataunplaced: any[];
   test2:any[];
   types:Array<string>;
   Name:string;
   applied:Array<String>;
+  applied1:Array<string>;
   idstring:String;
   god:boolean;
   placedstudents:Array<string>;
@@ -142,6 +179,7 @@ export class CompanyDetailsComponent implements OnInit {
   unplaced:Array<string>;
   placedinapplied:Array<string>;
   applieduplaced:Array<string>;
+  inprog:Array<string>;
 
 
   constructor(public companyService: CompanyService,public fb: FormBuilder  ,public eventService: EventService, 
@@ -153,9 +191,11 @@ export class CompanyDetailsComponent implements OnInit {
        this.Name= data.Name;
        });
        this.studentdata1=[];
+       this.allappliedstudents=[];
        this.placedstudents=[];
        this.placed=[];
        this.unplaced=[];
+       this.inprog=[];
        this.removeplacedstudents=[];
        this.placedCname="";
        this.isOpenstudent=false;
@@ -174,9 +214,8 @@ export class CompanyDetailsComponent implements OnInit {
       });
       this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
         this.studentdata = actionArray.map((item) => {
-          this.applied=item.payload.doc.data()['Applied'];
-          this.placedinapplied=item.payload.doc.data()['PlacedAt']
-          if(this.applied.includes(id.toString()) && !this.placedinapplied.includes(id.toString())){
+          this.applied=item.payload.doc.data()['InProgress'];
+          if(this.applied.includes(id.toString())){
             return {
               id: item.payload.doc.id,
               ...(item.payload.doc.data() as any),
@@ -187,7 +226,21 @@ export class CompanyDetailsComponent implements OnInit {
           return element !== undefined;
        });
       });
-
+      this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
+        this.allappliedstudents = actionArray.map((item) => {
+          this.applied1=item.payload.doc.data()['Applied'];
+          if(this.applied1.includes(id.toString())){
+            return {
+              id: item.payload.doc.id,
+              ...(item.payload.doc.data() as any),
+            };
+          }  
+        });
+        this.allappliedstudents = this.allappliedstudents.filter(function( element ) {
+          return element !== undefined;          
+       });
+      });
+     
       this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
         this.studentdataunplaced = actionArray.map((item) => {
           this.unplaced=item.payload.doc.data()['PlacedAt'];
@@ -321,12 +374,15 @@ if (index > -1) {
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.companyService.Removeplacedstudents(id,this.removeplacedstudents).then(() => {
     }, error => console.error(error));
+    this.companyService.Addinprogressstudents1(id,this.removeplacedstudents).then(() => {
+    }, error => console.error(error));
 
     for(var i in this.removeplacedstudents){
       this.studentService.RemovePlacedCompany(this.removeplacedstudents[i],id).then(() => {
       }, error => console.error(error));
+      this.studentService.addInprogress1(this.removeplacedstudents[i],id).then(() => {
+      }, error => console.error(error));
     }
-
   }
 
   onClick(){
@@ -334,15 +390,33 @@ if (index > -1) {
     this.companyService.addplacedstudents(id,this.placedstudents).then(() => {
     }, error => console.error(error));
 
+    this.companyService.Removeinprogressstudents1(id,this.placedstudents).then(() => {
+    }, error => console.error(error));
+
     for(var i in this.placedstudents){
       this.studentService.AddPlacedCompany(this.placedstudents[i],id).then(() => {
       }, error => console.error(error));
+      this.studentService.removeInprogress1(this.placedstudents[i],id).then(() => {
+      }, error => console.error(error));
     }
+    console.log(this.placedstudents);
+
   }
 
   finish(){
+
+  var id = this.actRoute.snapshot.paramMap.get('id');
  
-   var id = this.actRoute.snapshot.paramMap.get('id');
+     
+      for(var i in this.allappliedstudents){
+      this.studentService.removeInprogress(this.allappliedstudents[i],id).then(() => {
+      }, error => console.error(error));
+    }   
+
+
+   this.companyService.Removeinprogressstudents(id,this.allappliedstudents).then(() => {
+  }, error => console.error(error));
+
  
      this.companyService.Rejectedstudents(id,this.studentdataunplaced).then(() => {
      }, error => console.error(error));
