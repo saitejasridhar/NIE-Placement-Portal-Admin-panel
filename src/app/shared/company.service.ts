@@ -41,6 +41,9 @@ AddCompany(company:Company){
     return this.firestore.collection("Companys").snapshotChanges();
   }
 
+  GetTicketsList() {
+    return this.firestore.collection("Tickets").snapshotChanges();
+  }
 
   /* Update company */
   UpdateCompany(id, company: Company) {
@@ -70,6 +73,10 @@ AddCompany(company:Company){
   /* Delete company */
   DeleteCompany(id: string) {
     return this.firestore.doc('Companys/' + id).delete();
+  }
+
+  DeleteTicket(id: string) {
+    return this.firestore.doc('Tickets/' + id).delete();
   }
 
   getEventList(id:string){

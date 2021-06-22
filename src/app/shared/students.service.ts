@@ -41,7 +41,7 @@ export class StudentService {
 
 updatepermission(studentid:string,torf:string){
   return this.firestore.collection('students').doc(studentid).collection("Details").doc(studentid).update({
-    InProgress:torf
+    AllowEdit:torf
 }).catch(error => {
     this.errorMgmt(error);
   })

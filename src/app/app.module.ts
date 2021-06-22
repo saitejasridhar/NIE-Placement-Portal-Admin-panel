@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabModule } from '@syncfusion/ej2-angular-navigations';
 
+
   
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -51,6 +52,8 @@ import { CompanyDetailsComponent } from './components/company-details/company-de
 import { HistoryComponent } from './components/history/history.component';
 import { CompanyHistoryComponent } from './components/company-history/company-history.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { TicketsComponent } from './components/tickets/tickets.component';
+import { InsightsComponent } from './components/insights/insights.component';
 
 
 
@@ -67,11 +70,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CompanyListComponent,
     EditCompanyComponent,
     NavBarComponent,
+    InsightsComponent,
     EventsComponent,
     StudentsComponent,
     CompanyDetailsComponent,
     HistoryComponent,
     CompanyHistoryComponent,
+    TicketsComponent,
   ],
   imports: [
     NgxPaginationModule,

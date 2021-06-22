@@ -16,6 +16,8 @@ import {CompanyHistoryComponent } from '../../components/company-history/company
 
 import { AuthGuard } from "../../shared/guard/auth.guard";
 import { from } from 'rxjs';
+import { TicketsComponent } from 'src/app/components/tickets/tickets.component';
+import { InsightsComponent } from 'src/app/components/insights/insights.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/add-company', pathMatch: 'full'},
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'company-details/:id',component:CompanyDetailsComponent},
   {path:'history',component:HistoryComponent},
   {path:'history/:id',component:CompanyHistoryComponent},
+  {path:'studenttickets',component:TicketsComponent},
+  {path:'insights',component:InsightsComponent}
 ];
 
 @NgModule({

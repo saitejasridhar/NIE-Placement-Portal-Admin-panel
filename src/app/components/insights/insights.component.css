@@ -1,0 +1,55 @@
+.flex-parent{
+    display: flex;
+    background-color: rgb(255, 255, 255);  
+    flex-direction: column;  
+}
+.insightBranch{
+}
+.insightTop{
+    background-color: springgreen;
+    display: flex;
+    flex-direction: row; 
+}
+.insightTopContent{
+    width: 50%;
+    height: 33vh;
+    border: rgb(255, 255, 255) solid;
+}
+.insightRow3{
+    display: flex;
+    flex-direction: row;
+}
+
+.insightRow3Content{
+    width: 50%;
+    justify-content: center;
+    border: rgb(255, 255, 255) solid;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* RESPONSIVE */
+/* TABLET */
+@media (max-width: 800px) {
+    .insightTop{
+      flex-direction: column;
+    }
+    .insightTopContent{
+        width: 100%;
+        height: 33vh;
+    }
+    .insightRow3{
+        
+        flex-direction: column;
+    }
+    
+    
+    .insightRow3Content{
+        width: 100%;
+        
+        
+    }
+    
+    
+  }

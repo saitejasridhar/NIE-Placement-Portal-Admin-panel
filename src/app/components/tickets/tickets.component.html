@@ -1,0 +1,38 @@
+<nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
+      <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+      <span style=" border-left: 1px solid #242466 ;
+      height: 70px; margin-left: 8px;"></span>
+  PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+    </a>
+  </nav>
+  
+  <nav class="col-md-2 d-md-block bg-light sidebar">
+    <app-nav-bar></app-nav-bar>
+   </nav>
+        <!-- Main content -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="inner-adjust">
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <h4  style="color: #242466;">Rasied Tickets</h4>
+                </div>
+                
+                <div class="pricing-header mx-auto">
+                
+                  <!-- Showing students data -->
+                  <div style="overflow-x:auto; " class="table-responsive">
+  
+    <ng2-smart-table   (delete)="deleteTicket($event.data.id)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
+  
+                  </div>
+                </div>
+    
+          </div>
+  
+    
+        </main>
+  
+      
+  
+  
+       
