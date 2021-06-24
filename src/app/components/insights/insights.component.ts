@@ -163,11 +163,16 @@ export class InsightsComponent implements OnInit {
                label: '# of Votes',
                data: [this.core,this.mass,this.dream],
                backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
                ],
-               borderWidth: 3
+            borderColor: [
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+             'rgba(255, 205, 86, 1)',
+           ],
+            borderWidth: 1
            }]
        },
   
@@ -206,11 +211,16 @@ export class InsightsComponent implements OnInit {
                label: '# of Votes',
                data: [this.coretotalpackage/this.core,this.masstotalpackage/this.mass,this.dreamtotalpackage/this.dream],
                backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
                ],
-               borderWidth: 3
+            borderColor: [
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+             'rgba(255, 205, 86, 1)',
+           ],
+            borderWidth: 1
            }]
        },
         options: {
@@ -247,11 +257,16 @@ export class InsightsComponent implements OnInit {
                label: '# of Votes',
                data: [this.corecompanystudents,this.masscompanystudents,this.dreamcompanystudents],
                backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
                ],
-               borderWidth: 3
+            borderColor: [
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+             'rgba(255, 205, 86, 1)',
+           ],
+            borderWidth: 1
            }]
        },
         options: {
@@ -724,28 +739,40 @@ export class InsightsComponent implements OnInit {
       let Chartbar = new Chart(this.ctx3, {
         type: 'bar',
         data: {
-            labels: ["CSE", "ISE", "MECH","IPE", "CIVIL", "EEE","EC"],
+            labels: ["CSE", "ISE", "ME","IPS", "CV", "EEE","EC"],
             datasets: [
              {
-              //  barThickness: 46,
+                //  barThickness: 30,
                  label: "Placed",
                  fill: false,
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)'
-    ],
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                  ],
+                  borderColor:[
+                    'rgba(255, 99, 132, 1)'
+                  ],
+                  borderWidth: 1,
                 //  data: this.placed
                 data:[2,5,6,3,1,9,3]
              },
              {
-              //  barThickness: 46,
+                // barThickness: 30,
                  label: "UnPlaced",
-                 backgroundColor: "#36A2EB",
+                 ill: false,
+                  backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)'
+                  ],
+                  borderColor:[
+                    'rgba(54, 162, 235, 1)'
+                  ],
+                  borderWidth: 1,
                 //  data: this.unplaced
                 data:[4,5,2,1,6,8,4]
              },
          ]
         },
          options: {
+           
           indexAxis: 'y',
          responsive: true,
          plugins: {
@@ -760,7 +787,8 @@ export class InsightsComponent implements OnInit {
            position:'bottom',
            }
          }
-       }
+       },
+       
       });
 
       for (var i in this.placed) {  
@@ -774,16 +802,19 @@ export class InsightsComponent implements OnInit {
      let Chartsample = new Chart(this.ctx2, {
        type: 'doughnut',
        data: {
-           labels: ["Placed", "Unplaced",""],
+           labels: ["Placed", "Unplaced"],
            datasets: [{
                label: '# of Votes',
-               data: [this.totalplaced,this.totalunplaced,0],
+               data: [this.totalplaced,this.totalunplaced],
                backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 0)'
+                   'rgba(255, 99, 132, 0.2)',
+                   'rgba(54, 162, 235, 0.2)',
                ],
-               borderWidth: 3
+               borderColor:[
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+              ],
+               borderWidth: 1
            }]
        },
         options: {

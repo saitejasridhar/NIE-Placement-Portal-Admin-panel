@@ -6,13 +6,71 @@
     
 }
 .insightBranch{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.insightBranch canvas{ 
-    /* height:30%!important; */
-    width: 100%!important;
+.insightBranch{
+    padding: 5%;
+    background-color:#f2fcff;
+    border: 1px #def5fc solid;
+}
+
+.insightBranch-content:first-child{
+    width: 60%;
+   
+}
+
+.insightBranch-content:nth-child(2){
+    margin-left: 7%;
+    width: 33%;
+   
+}
+.number-stat{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.number-stat-content {
+margin-top: 5%;
+}
+
+.number-stat-content h3{
+    color: rgba(255, 99, 132, 1);
+
+  margin:0;
+}
+.number-stat-content:nth-child(2) h3{
+   
+    color: rgba(54, 162, 235, 1);
+  margin:0;
+}
+
+/* SECOND SETCION */
+.insightRow3Content{
+    display: flex;
+    flex-direction: column;  
+    width: 20%;
+}
+.insightRow3Content-stat{
+    display: flex;
+    flex-direction: row;  
+    justify-content: center;
+}
+
+.insightRow3Content-stat h3{
+    margin:3%;
+}
+.insightRow3Content-stat h3:first-child{
+    color: rgba(255, 99, 132, 1);
+}
+.insightRow3Content-stat h3:nth-child(2){
+    color:rgba(54, 162, 235, 1);
+}
+.insightRow3Content-stat h3:nth-child(3){
+    color: rgba(255, 205, 86, 1)
 }
 
 .insightTop{
@@ -24,18 +82,19 @@
     border: rgb(255, 255, 255) solid;
 }
 .insightRow3{
-    
     display: flex;
     flex-direction: row;
     justify-content:space-around;
 }
 
 .insightRow3Content{
-    /* width: 25%;
-    justify-content:center; */
-    max-width: 20%;
-    justify-content:space-around;
-    border: rgb(255, 255, 255) solid;
+    margin: 1%;
+    background-color:#f2fcff;
+    width: 33.33333%;
+    justify-content:center;
+    /* max-width: 20%;
+    justify-content:space-around; */
+    border: 1px #def5fc solid;
     display: flex;
     
 }
@@ -44,6 +103,20 @@
 /* RESPONSIVE */
 /* TABLET */
 @media (max-width: 800px) {
+    .insightBranch{
+        
+        flex-direction: column; 
+    }
+    .insightBranch-content:first-child{
+        width: 100%;
+
+    }
+    .insightBranch-content:nth-child(2){
+        width: 80%;
+        margin-left: 0%;
+
+
+    }
     .insightTop{
       flex-direction: column;
     }
@@ -66,4 +139,18 @@
     }
     
     
+  }
+
+  /* SMALL MOBILE */
+  @media (max-width: 350px) {
+    .number-stat{
+        flex-direction: column;
+    }
+    .number-stat-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
   }
