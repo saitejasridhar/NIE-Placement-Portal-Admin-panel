@@ -1,63 +1,84 @@
 <nav class="navbar navbar-light fixed-top  flex-md-nowrap p-0" style=" background-color: #CDECF5;">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="color:#242466; font-size: 30px; font-weight: 900; line-height: 0px;">
-      <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
-      <span style=" border-left: 1px solid #242466 ;
-      height: 70px; margin-left: 8px;"></span>
-  PLACEMENT <span style="font-weight: 330;">PORTAL</span>
+    <img class="brand-logo" src="assets/nie.png" alt="positronX.io Logo" width="34">
+    <span style=" border-left: 1px solid #242466 ;
+       height: 70px; margin-left: 8px;"></span>
+    PLACEMENT <span style="font-weight: 330;">PORTAL</span>
     </a>
-  </nav>
-  
-  <nav class="col-md-2 d-md-block bg-light sidebar">
+ </nav>
+ <nav class="col-md-2 d-md-block bg-light sidebar">
     <app-nav-bar></app-nav-bar>
-   </nav>
-        <!-- Main content -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="inner-adjust">
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                  <h4  style="color: #242466;">Insights</h4>
-                </div>
-                <div class="flex-parent">
-                    <div class="insightBranch">
-                        <canvas id="Chartbar"></canvas>
-                    </div>
-                    
-                    <!-- <div class="insightTop">
-                        <div class="insightTopContent">
-                            <h1>TOP 5 STUDENTS</h1>
-                             
-                        </div>
-                        
-                        <div class="insightTopContent">
-                            <h1>TOP 5 COMPANIES</h1>
-                        </div>
-                    </div> -->
-                    <div class="insightRow3">
-                        <div class="insightRow3Content">
-                      <canvas id="Charttier"></canvas>
-                        </div>
-                        <div class="insightRow3Content">
-                            <canvas id="Chartcompanies"></canvas>
-                        </div>
-                        <div class="insightRow3Content">
-                            <canvas id="Chartsample"></canvas>
-
-                        </div>
-
-                    </div>
-                    
-                    
-
-                </div>
+ </nav>
+ <!-- Main content -->
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="inner-adjust">
+       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h4  style="color: #242466;">Insights</h4>
+       </div>
 
 
-
-                
-          </div>
-  
     
-        </main>
-  
-      
-  
-  
        
+       <div class="flex-parent">
+          <div class="insightBranch">
+             <canvas id="Chartbar"></canvas>
+          </div>
+          <br>
+          <br>
+
+          <div class="insightTop">
+             <div class="insightTopContent">
+                <canvas id="Chartbranchpackage"></canvas>
+             </div>
+             <div class="insightTopContent">
+                <canvas id="Chartbranchcompanies"></canvas>
+             </div>
+             </div>
+
+<br>
+<br>
+          <div class="insightRow3">
+             <div class="insightRow3Content">
+                <canvas id="Charttier"></canvas>
+             </div>
+             <div class="insightRow3Content">
+                <canvas id="Chartcompanies"></canvas>
+               
+             </div>
+             <div class="insightRow3Content">
+                <canvas id="Chartsample"></canvas>
+             </div>
+             <div class="insightRow3Content">
+                <canvas id="Chartaveragepackage"></canvas>
+             </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="insightTop">
+            <div class="insightTopContent">
+               <canvas id="BranchPackagePlaced"></canvas>
+            </div>
+            <div class="insightTopContent">
+            </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="insightRow3">
+                <div class="insightRow3Content">
+                   <canvas id="intakemass"></canvas>
+                </div>
+                <div class="insightRow3Content">
+                   <canvas id="intakecore"></canvas>
+                  
+                </div>
+                <div class="insightRow3Content">
+                   <canvas id="intakedream"></canvas>
+                </div>
+             </div>
+       </div>
+    </div>
+ </main>
