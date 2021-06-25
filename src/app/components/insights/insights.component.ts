@@ -43,6 +43,9 @@ export class InsightsComponent implements OnInit {
   canvas7: any;
   ctx7: any;
 
+  canvas8: any;
+  ctx8: any;
+
 
   data:any
   placed:Array<number>=[0,0,0,0,0,0,0,0];
@@ -338,15 +341,24 @@ export class InsightsComponent implements OnInit {
                data: [this.CSEpackage/this.CSEcompanies,this.ISEpackage/this.ISEcompanies,this.Mechpackage/this.Mechcompanies,this.IPEpackage/this.IPEcompanies,
                 this.Civilpackage/this.Civilcompanies,this.EEEpackage/this.EEEcompanies,this.ECpackage/this.ECcompanies],
                backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(25, 206, 86, 1)',
-                   'rgb(75, 192, 192, 1)',
-                   'rgb(201, 203, 207, 1)',
-                   'rgba(153, 102, 255, 1)',
-                   'rgba(255, 205, 86, 1)',
+                   'rgba(255, 99, 132, 0.2)',
+                   'rgba(54, 162, 235, 0.2)',
+                   'rgba(25, 206, 86, 0.2)',
+                   'rgb(75, 192, 192, 0.2)',
+                   'rgb(201, 203, 207, 0.2)',
+                   'rgba(153, 102, 255, 0.2)',
+                   'rgba(255, 205, 86, 0.2)',
                ],
-               borderWidth: 3
+               borderColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(25, 206, 86, 1)',
+                'rgb(75, 192, 192, 1)',
+                'rgb(201, 203, 207, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 205, 86, 1)',
+            ],
+               borderWidth: 1
            }]
        },
         options: {
@@ -383,16 +395,25 @@ export class InsightsComponent implements OnInit {
                label: '# of Votes',
                data: [this.CSEcompanies,this.ISEcompanies,this.Mechcompanies,this.IPEcompanies,
                 this.Civilcompanies,this.EEEcompanies,this.ECcompanies],
-               backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(25, 206, 86, 1)',
-                   'rgb(75, 192, 192, 1)',
-                   'rgb(201, 203, 207, 1)',
-                   'rgba(153, 102, 255, 1)',
-                   'rgba(255, 205, 86, 1)',
-               ],
-               borderWidth: 3
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(25, 206, 86, 0.2)',
+                  'rgb(75, 192, 192, 0.2)',
+                  'rgb(201, 203, 207, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+              ],
+              borderColor: [
+               'rgba(255, 99, 132, 0.5)',
+               'rgba(54, 162, 235, 1)',
+               'rgba(25, 206, 86, 1)',
+               'rgb(75, 192, 192, 1)',
+               'rgb(201, 203, 207, 1)',
+               'rgba(153, 102, 255, 1)',
+               'rgba(255, 205, 86, 1)',
+           ],
+              borderWidth: 1
            }]
        },
         options: {
@@ -424,17 +445,19 @@ export class InsightsComponent implements OnInit {
      let intakemass = new Chart(this.ctx1, {
        type: 'doughnut',
        data: {
-        labels: ["Applied","Placed"],
            datasets: [{
                label: '# of Votes',
               //  data: [this.appliedmass,this.placedmass],
               data: [5,1],
-               backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
-               ],
-               borderWidth: 3
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor:[
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+           ],
+            borderWidth: 1
            }]
        },
         options: {
@@ -450,7 +473,7 @@ export class InsightsComponent implements OnInit {
               size: 15
             },
             display: true,
-            text: 'Percentage of students in Mass'
+            text: 'Mass'
         },
           legend: {
           position:'bottom',
@@ -464,17 +487,19 @@ export class InsightsComponent implements OnInit {
      let intakecore = new Chart(this.ctx1, {
        type: 'doughnut',
        data: {
-        labels: ["Applied","Placed"],
            datasets: [{
                label: '# of Votes',
               //  data: [this.appliedcore,this.placedcore],
               data: [51,8],
-               backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
-               ],
-               borderWidth: 3
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor:[
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+           ],
+            borderWidth: 1
            }]
        },
         options: {
@@ -490,7 +515,7 @@ export class InsightsComponent implements OnInit {
               size: 15
             },
             display: true,
-            text: 'Percentage of students in Core'
+            text: 'Core'
         },
           legend: {
           position:'bottom',
@@ -505,17 +530,20 @@ export class InsightsComponent implements OnInit {
      let intakedream = new Chart(this.ctx1, {
        type: 'doughnut',
        data: {
-           labels: ["Applied","Placed"],
+         
            datasets: [{
                label: '# of Votes',
               //  data: [this.applieddream,this.placeddream],
               data: [5,8],
-               backgroundColor: [
-                   'rgba(255, 99, 132, 1)',
-                   'rgba(54, 162, 235, 1)',
-                   'rgba(255, 206, 86, 1)'
-               ],
-               borderWidth: 3
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor:[
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+           ],
+            borderWidth: 1
            }]
        },
         options: {
@@ -531,7 +559,56 @@ export class InsightsComponent implements OnInit {
               size: 15
             },
             display: true,
-            text: 'Percentage of students in Dream'
+            text: 'Dream'
+        },
+          legend: {
+          position:'bottom',
+          }
+        }
+      }
+     });
+
+
+     this.canvas8 = document.getElementById('intakealltiers');
+     this.ctx8 = this.canvas8.getContext('2d');
+     let intakealltiers = new Chart(this.ctx8, {
+       type: 'doughnut',
+       data: {
+        labels: ["Total applications","Accepted applications"],
+           datasets: [{
+               label: '# of Votes',
+              //  data: [this.applieddream+this.appliedcore+this.appliedmass,
+              //   this.placeddream+this.placedmass+this.placedcore],
+              data: [15,34],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor:[
+             'rgba(255, 99, 132, 1)',
+             'rgba(54, 162, 235, 1)',
+           ],
+            borderWidth: 1
+           }]
+       },
+        options: {
+          layout: {
+            padding: 2
+        },
+          scale: {
+            ticks: {
+              padding: 125,
+              precision: 0
+            }
+          },
+        responsive: true,
+        plugins: {
+          title: {
+            font: {
+              size: 17
+            },
+            display: true,
+            text: 'Total applicatons vs accepted applications'
         },
           legend: {
           position:'bottom',
@@ -724,7 +801,7 @@ export class InsightsComponent implements OnInit {
               size: 15
             },
             display: true,
-            text: 'Branch wise Placed vs Unplaced'
+            text: 'Number of companies students placed'
         },
            legend: {
            position:'bottom',

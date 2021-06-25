@@ -53,6 +53,7 @@ export class StudentsComponent implements OnInit {
       FName: {
         title: "First Name",
         // filter: false
+     
       },
       PEmail: {
         title: "Email",

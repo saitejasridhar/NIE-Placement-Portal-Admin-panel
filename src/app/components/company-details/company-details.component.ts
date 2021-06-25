@@ -90,8 +90,15 @@ export class CompanyDetailsComponent implements OnInit {
         title: "First Name",
         // filter: false
       },
-      PEmail: {
-        title: "Email",
+      CGPA: {
+        title: "CGPA",
+        filterFunction(cell?: any, search?: string): boolean {          
+          if (cell >= search || search === '') {
+            return true;
+          } else {
+            return false;
+          }          
+        }
       },
       Branch: {
         title: "Branch",
@@ -126,8 +133,16 @@ export class CompanyDetailsComponent implements OnInit {
         title: "First Name",
         // filter: false
       },
-      PEmail: {
-        title: "Email",
+      CGPA: {
+        title: "CGPA",
+        placeholder: 'Minimum CGPA',
+        filterFunction(cell?: any, search?: string): boolean {          
+          if (cell >= search || search === '') {
+            return true;
+          } else {
+            return false;
+          }          
+        }
       },
       Branch: {
         title: "Branch",
