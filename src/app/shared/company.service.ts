@@ -65,6 +65,8 @@ AddCompany(company:Company){
         Tenth:company.Tenth,
         Twelfth:company.Twelfth,
         Tier:company.Tier,
+        Time:company.Time,
+        DateTime:company.DateTime
   }).catch(error => {
       this.errorMgmt(error);
     })

@@ -199,6 +199,14 @@
                     Blog date is required
                  </mat-error>
               </mat-form-field>
+
+              <mat-form-field  appearance="outline" hintLabel="" >
+               <mat-label>Enter last time of day to apply</mat-label>
+               <input matInput formControlName="Time" #input type="time">
+               <mat-error *ngIf="handleError('Time', 'required')">
+                  Time is required
+               </mat-error>
+            </mat-form-field>
            </div>
         </mat-card>
         <div>

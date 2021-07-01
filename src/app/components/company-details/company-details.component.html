@@ -48,10 +48,10 @@
              </mat-error>
           </mat-form-field>
           <mat-form-field style="width: 100%;"   appearance="outline" hintLabel="" >
-            <mat-label>Enter Number of Current Backlogs</mat-label>
+            <mat-label>Enter time of the event</mat-label>
             <input matInput formControlName="time" #input type="time">
             <mat-error *ngIf="handleError('time', 'required')">
-               The value is lesser than the minimum
+               Time is required
             </mat-error>
          </mat-form-field>
           <mat-form-field style="width: 100%;" appearance="outline">

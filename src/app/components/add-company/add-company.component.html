@@ -31,10 +31,20 @@
                     You must provide a <strong>Company name</strong>
                  </mat-error>
               </mat-form-field>
+
+                  <!--- Category -->
+                  <mat-form-field appearance="outline" >
+                     <mat-label>Company Tier</mat-label>
+                     <mat-select formControlName="Tier">
+                        <mat-option *ngFor="let tier of tiers" [value]="tier" >
+                        {{tier}}
+                        </mat-option>
+                     </mat-select >
+                  </mat-form-field>       
               <!--Description-->
               <mat-form-field appearance="outline" class="example-full-width" >
                  <mat-label>Breif Description *</mat-label>
-                 <textarea id="et" cols="500" rows="10
+                 <textarea id="et" cols="500" rows="5
                     " matInput formControlName="Description"></textarea>
                  <mat-error *ngIf="handleError('Description', 'required')">
                     You must provide an <strong>a description</strong>
@@ -124,15 +134,7 @@
                  </mat-chip-list>
               </mat-form-field>
 
-              <!--- Category -->
-              <mat-form-field appearance="outline" >
-                <mat-label>Company Tier</mat-label>
-                <mat-select formControlName="Tier">
-                   <mat-option *ngFor="let tier of tiers" [value]="tier" >
-                   {{tier}}
-                   </mat-option>
-                </mat-select >
-             </mat-form-field>
+          
               <!-- Job Roles -->
               <mat-form-field appearance="outline" class="example-chip-list">
                  <mat-label>Job Roles</mat-label>
@@ -197,9 +199,17 @@
                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                  <mat-datepicker #picker></mat-datepicker>
                  <mat-error *ngIf="handleError('Date', 'required')">
-                    Blog date is required
+                    Last date to apply is required
                  </mat-error>
               </mat-form-field>
+
+              <mat-form-field  appearance="outline" hintLabel="" >
+               <mat-label>Enter last time of day to apply</mat-label>
+               <input matInput formControlName="Time" #input type="time">
+               <mat-error *ngIf="handleError('Time', 'required')">
+                  Time is required
+               </mat-error>
+            </mat-form-field>
            </div>
         </mat-card>
         <div>

@@ -39,6 +39,15 @@
               You must provide an <strong>a description</strong>
            </mat-error>
         </mat-form-field>
+        <mat-form-field style="width: 100%;" appearance="outline">
+         <mat-label>Branches *</mat-label>
+         <mat-select multiple formControlName="Branch">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+         </mat-select>
+         <mat-error *ngIf="handleError('Branch', 'required')">
+            You must provide a<strong>branches</strong>
+         </mat-error>
+      </mat-form-field>
         </form>
         <button *ngIf='isupdate' mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Update</button>
         <button *ngIf='!isupdate' mat-button style="float: right;background-color:#242466; color: white;"(click)= "addevent(eventForm.value)">Add</button>

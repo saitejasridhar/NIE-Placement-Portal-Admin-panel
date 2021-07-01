@@ -20,7 +20,7 @@ import { TicketsComponent } from 'src/app/components/tickets/tickets.component';
 import { InsightsComponent } from 'src/app/components/insights/insights.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/add-company', pathMatch: 'full'},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'sign-in', component: SignInComponent},
   { path: 'register-user', component: SignUpComponent},
   { path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard] },
@@ -35,7 +35,7 @@ const routes: Routes = [
   {path:'history',component:HistoryComponent},
   {path:'history/:id',component:CompanyHistoryComponent},
   {path:'studenttickets',component:TicketsComponent},
-  {path:'insights',component:InsightsComponent}
+  {path:'home',component:InsightsComponent}
 ];
 
 @NgModule({

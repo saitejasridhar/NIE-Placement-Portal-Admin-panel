@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 import { COMMA, D, ENTER } from '@angular/cdk/keycodes';
 import { CompanyService } from '../../shared/company.service';
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
@@ -18,6 +18,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 export class EditCompanyComponent implements OnInit {
   demo: string = ``;
+  jstoday:string;
   path: string='/assets/img/image_placeholder.jpg'
   imgSrc: String='/assets/img/image_placeholder.jpg'
   selectedImage: any = null;
@@ -63,6 +64,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
         this.editCompanyForm.controls['Offer'].setValue(data.Offer);
         this.editCompanyForm.controls['Cgpa'].setValue(data.Cgpa);
         this.editCompanyForm.controls['Tier'].setValue(data.Tier);
+        this.editCompanyForm.controls['Time'].setValue(data.Time);
         this.roles= data.Roles;
         this.skills=data.Skills;
         this.batches=data.Batches;
@@ -111,7 +113,7 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
     this.editCompanyForm = this.fb.group({
       Name: ["", [Validators.required]],
       Date: ["", [Validators.required]],
-      // aimage:['',[Validators.required]],
+      Time:["",[Validators.required]],
       Description: ["", [Validators.required]],
       Branch: ["", [Validators.required]],
       Cgpa: ["", [Validators.min(0), Validators.max(10)]],
@@ -127,7 +129,8 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
       Skills: ["", []],
       Roles: ["", []],
       Batches:["", []],
-      AppliedStudents:["",[]]
+      AppliedStudents:["",[]],
+      DateTime:["",[]]
     })
   }
   
@@ -155,6 +158,9 @@ toppingList: string[] = ["CSE", "ISE", "ECE", "EEE", "IPE", "ME", "CE"];
 
   UpdateAudtion(formValue) {
     if (this.editCompanyForm.valid){
+      const today= new Date();
+      this.jstoday = formatDate(today, 'dd-MM-yyyy hh:mm a', 'en-US', '+0530');
+      this.editCompanyForm.value["DateTime"]=this.jstoday;
       this.editCompanyForm.value["Roles"] = this.roles;
       this.editCompanyForm.value["Skills"] = this.skills;
       this.editCompanyForm.value["Batches"] = this.batches;

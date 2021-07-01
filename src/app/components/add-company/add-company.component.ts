@@ -13,6 +13,7 @@ import {
 } from "@angular/forms";
 import { Company } from "src/app/shared/company";
 import { MatChipInputEvent } from "@angular/material/chips";
+import { formatDate } from "@angular/common";
 
 
 @Component({
@@ -23,6 +24,7 @@ import { MatChipInputEvent } from "@angular/material/chips";
 export class AddCompanyComponent implements OnInit {
   offering: Array<string>;
   tiers: Array<string>;
+  jstoday:String;
 
   demo: string = ``;
   loading: boolean = true;
@@ -67,6 +69,7 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm = this.fb.group({
       Name: ["", [Validators.required]],
       Date: ["", [Validators.required]],
+      Time:["", [Validators.required]],
       Description: ["", [Validators.required]],
       Branch: ["", [Validators.required]],
       Cgpa: ["", [Validators.min(0), Validators.max(10)]],
@@ -83,8 +86,11 @@ export class AddCompanyComponent implements OnInit {
       Batches:["", []],
       Tier:["", []],
       AppliedStudents:["",[]],
+      Rejected:["",[]],
+      InProgress:["",[]],
       Placed:["",[]],
-      isHistory:["",[]]
+      isHistory:["",[]],
+      DateTime:["",[]]
     });
   }
 
@@ -150,10 +156,14 @@ export class AddCompanyComponent implements OnInit {
     this.companyForm.value["Skills"] = this.skills;
     this.companyForm.value["Batches"] = this.batches;
     this.companyForm.value["AppliedStudents"]=[];
+    this.companyForm.value["Rejected"]=[];
+    this.companyForm.value["InProgress"]=[];
     this.companyForm.value["Placed"]=[];
     this.companyForm.value["isHistory"]="false"
-    console.log(this.companyForm.value);
     if (this.companyForm.valid) {
+      const today= new Date();
+      this.jstoday = formatDate(today, 'dd-MM-yyyy hh:mm a', 'en-US', '+0530');
+      this.companyForm.value["DateTime"]=this.jstoday;
       this.preview = true;
       this.display = true;
       this.companyService.AddCompany(formValue);
