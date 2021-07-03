@@ -184,6 +184,7 @@ export class CompanyDetailsComponent implements OnInit {
   test2:any[];
   types:Array<string>;
   Name:string;
+  Tier:string;
   applied:Array<String>;
   applied1:Array<string>;
   idstring:String;
@@ -204,6 +205,7 @@ export class CompanyDetailsComponent implements OnInit {
        this.companyService.GetCompany(id).subscribe(
          (data:Company) => {
        this.Name= data.Name;
+       this.Tier= data.Tier;
        });
        this.studentdata1=[];
        this.allappliedstudents=[];
@@ -395,6 +397,8 @@ if (index > -1) {
     for(var i in this.removeplacedstudents){
       this.studentService.RemovePlacedCompany(this.removeplacedstudents[i],id).then(() => {
       }, error => console.error(error));
+      this.studentService.RemovePlacedCompanyTier(this.removeplacedstudents[i],this.Tier).then(() => {
+      }, error => console.error(error));
       this.studentService.addInprogress1(this.removeplacedstudents[i],id).then(() => {
       }, error => console.error(error));
     }
@@ -410,6 +414,8 @@ if (index > -1) {
 
     for(var i in this.placedstudents){
       this.studentService.AddPlacedCompany(this.placedstudents[i],id).then(() => {
+      }, error => console.error(error));
+      this.studentService.AddPlacedCompanyTier(this.placedstudents[i],this.Tier).then(() => {
       }, error => console.error(error));
       this.studentService.removeInprogress1(this.placedstudents[i],id).then(() => {
       }, error => console.error(error));

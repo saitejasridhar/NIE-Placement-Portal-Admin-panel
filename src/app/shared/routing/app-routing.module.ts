@@ -15,27 +15,25 @@ import {CompanyHistoryComponent } from '../../components/company-history/company
 
 
 import { AuthGuard } from "../../shared/guard/auth.guard";
-import { from } from 'rxjs';
 import { TicketsComponent } from 'src/app/components/tickets/tickets.component';
 import { InsightsComponent } from 'src/app/components/insights/insights.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'sign-in', component: SignInComponent},
-  { path: 'register-user', component: SignUpComponent},
-  { path: 'add-company', component: AddCompanyComponent, canActivate: [AuthGuard] },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'edit-company/:id', component: EditCompanyComponent },
-  {path: 'add-company',component:AddCompanyComponent},
-  {path:'company-list',component:CompanyListComponent},
-  {path:'events', component:EventsComponent},
-  {path:'students',component:StudentsComponent},
-  {path:'company-details/:id',component:CompanyDetailsComponent},
-  {path:'history',component:HistoryComponent},
-  {path:'history/:id',component:CompanyHistoryComponent},
-  {path:'studenttickets',component:TicketsComponent},
-  {path:'home',component:InsightsComponent}
+  { path: 'sign-in', component: SignInComponent, },
+  { path: 'register-user', component: SignUpComponent,},
+  { path: 'add-company', component: AddCompanyComponent , canActivate: [AuthGuard]},
+  { path: 'forgot-password', component: ForgotPasswordComponent ,},
+  { path: 'verify-email-address', component: VerifyEmailComponent, },
+  { path: 'edit-company/:id', component: EditCompanyComponent, canActivate: [AuthGuard] },
+  {path:'company-list',component:CompanyListComponent, canActivate: [AuthGuard]},
+  {path:'events', component:EventsComponent, canActivate: [AuthGuard]},
+  {path:'students',component:StudentsComponent, canActivate: [AuthGuard]},
+  {path:'company-details/:id',component:CompanyDetailsComponent, canActivate: [AuthGuard]},
+  {path:'history',component:HistoryComponent, canActivate: [AuthGuard]},
+  {path:'history/:id',component:CompanyHistoryComponent, canActivate: [AuthGuard]},
+  {path:'studenttickets',component:TicketsComponent, canActivate: [AuthGuard]},
+  {path:'home',component:InsightsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

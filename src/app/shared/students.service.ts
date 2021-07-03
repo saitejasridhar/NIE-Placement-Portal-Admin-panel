@@ -32,6 +32,12 @@ export class StudentService {
       });;
   }
 
+  AddPlacedCompanyTier(studentid:string,companytier:string ){
+    return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+        Tiers: firestore.FieldValue.arrayUnion(companytier)
+      });;
+  }
+
 
   AddrejectedCompany(students:string,compnayid:string){  
     return this.firestore.collection("students").doc(students).collection("Details").doc(students).update({
@@ -70,6 +76,13 @@ addInprogress1(studentid:string,compnayid:string){
     InProgress: firestore.FieldValue.arrayUnion(compnayid)
   });
 }
+
+
+RemovePlacedCompanyTier(studentid:string,tier:string ){
+    return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+        Tiers: firestore.FieldValue.arrayRemove(tier)
+      });;
+  }
 
 
   RemovePlacedCompany(studentid:string,companyid:string ){

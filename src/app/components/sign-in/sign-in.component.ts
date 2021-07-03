@@ -16,7 +16,8 @@ export class SignInComponent implements OnInit {
   ) { 
     if(this.authService.isLoggedIn==true)
     {
-      this.router.navigate(['/add-company']);
+      console.log("Hello");
+      this.router.navigate(['/home']);
     }
     else{
       console.log("Hello");

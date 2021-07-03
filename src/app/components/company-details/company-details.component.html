@@ -44,23 +44,23 @@
              <textarea id="et" cols="500" rows="9
                 " matInput formControlName="description"></textarea>
              <mat-error *ngIf="handleError('description', 'required')">
-                You must provide an <strong>a description</strong>
+                You must provide an <strong> description</strong>
              </mat-error>
           </mat-form-field>
           <mat-form-field style="width: 100%;"   appearance="outline" hintLabel="" >
             <mat-label>Enter time of the event</mat-label>
             <input matInput formControlName="time" #input type="time">
             <mat-error *ngIf="handleError('time', 'required')">
-               Time is required
+              Event time is required
             </mat-error>
          </mat-form-field>
           <mat-form-field style="width: 100%;" appearance="outline">
-            <input matInput readonly [matDatepicker]="picker" placeholder="Last Date to apply *"
+            <input matInput readonly [matDatepicker]="picker" placeholder="Date of the event *"
             formControlName="date" (dateChange)="formatDate($event)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="handleError('date', 'required')">
-               Blog date is required
+               Event date is required
             </mat-error>
          </mat-form-field>
           </form>
