@@ -54,6 +54,8 @@ import { CompanyHistoryComponent } from './components/company-history/company-hi
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { InsightsComponent } from './components/insights/insights.component';
+import { ClosedTicketsComponent } from './components/closed-tickets/closed-tickets.component';
+import { AllcompanyEventsComponent } from './components/allcompany-events/allcompany-events.component';
 
 
 
@@ -77,6 +79,8 @@ import { InsightsComponent } from './components/insights/insights.component';
     HistoryComponent,
     CompanyHistoryComponent,
     TicketsComponent,
+    ClosedTicketsComponent,
+    AllcompanyEventsComponent,
   ],
   imports: [
     NgxPaginationModule,

@@ -32,6 +32,12 @@ export class StudentService {
       });;
   }
 
+  AddRejectedCompany(studentid:string,companyid:string ){
+    return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
+      Rejected: firestore.FieldValue.arrayUnion(companyid)
+      });;
+  }
+
   AddPlacedCompanyTier(studentid:string,companytier:string ){
     return this.firestore.collection("students").doc(studentid).collection("Details").doc(studentid).update({
         Tiers: firestore.FieldValue.arrayUnion(companytier)

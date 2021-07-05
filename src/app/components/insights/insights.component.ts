@@ -18,6 +18,8 @@ export class InsightsComponent implements OnInit {
   core:number=0;
   mass:number=0;
   dream:number=0;
+
+  solved:number=0;
   canvas: any;
   ctx: any;
 
@@ -911,6 +913,22 @@ export class InsightsComponent implements OnInit {
       }
      });
 
+
+    });
+
+    this.companyService.GetTicketsList().subscribe((actionArray) => {
+      this.data = actionArray.map((item) => {
+        return {
+          id: item.payload.doc.id,
+          ...(item.payload.doc.data() as Company),
+        };
+      });
+
+      for(var i in this.data){
+        if(this.data[i]['status']==="Completed"){
+          this.solved++;
+        }
+      }
 
     });
 

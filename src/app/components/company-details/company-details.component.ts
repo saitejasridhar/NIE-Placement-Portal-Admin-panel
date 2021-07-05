@@ -43,6 +43,23 @@ export class CompanyDetailsComponent implements OnInit {
   PlacedCompaies:Array<string>;
   placedCname:string;
   isOpenstudent:boolean;
+
+
+  Desc:String;
+  Branches:String;
+  Package:String;
+  Offering:String;
+  Location:String;
+  Skills:String;
+  Positions:String;
+  per10:String;
+  per12:String;
+  cutCGPA:String;
+  cutCurArr:String;
+  cutClrArr:String;
+  compTier:String;
+
+
   settings = {
     noDataMessage:"No Companies",
     mode: 'external',
@@ -206,6 +223,19 @@ export class CompanyDetailsComponent implements OnInit {
          (data:Company) => {
        this.Name= data.Name;
        this.Tier= data.Tier;
+       this.Desc=data.Description;
+       this.Package=data.Ctc.toString();
+       this.Branches=data.Branch.toString();
+       this.Offering=data.Ctc.toString();
+       this.Location=data.Location;
+       this.Skills=data.Skills.toString();
+       this.Positions=data.Roles.toString();
+       this.per10=data.Tenth.toString();
+       this.per12=data.Twelfth.toString();
+       this.cutCGPA=data.Cgpa.toString();
+       this.cutCurArr=data.Backlog.toString();
+       this.cutClrArr=data.ClBacklog.toString();
+       this.compTier=data.Tier;
        });
        this.studentdata1=[];
        this.allappliedstudents=[];
@@ -232,7 +262,7 @@ export class CompanyDetailsComponent implements OnInit {
       this.studentService.GetCompanyStudentList().subscribe((actionArray) => {
         this.studentdata = actionArray.map((item) => {
           this.applied=item.payload.doc.data()['InProgress'];
-          if(this.applied.includes(id.toString())){
+          if(this.applied.includes(id.toString()) && item.payload.doc.data()['Tiers'].length <2 && !item.payload.doc.data()['Tiers'].find(element => element === "Dream")){
             return {
               id: item.payload.doc.id,
               ...(item.payload.doc.data() as any),
@@ -416,6 +446,23 @@ if (index > -1) {
       this.studentService.AddPlacedCompany(this.placedstudents[i],id).then(() => {
       }, error => console.error(error));
       this.studentService.AddPlacedCompanyTier(this.placedstudents[i],this.Tier).then(() => {
+      }, error => console.error(error));
+      this.studentService.removeInprogress1(this.placedstudents[i],id).then(() => {
+      }, error => console.error(error));
+    }
+    console.log(this.placedstudents);
+
+  }
+  rejected(){
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    this.companyService.addrejectedstudents(id,this.placedstudents).then(() => {
+    }, error => console.error(error));
+
+    this.companyService.Removeinprogressstudents1(id,this.placedstudents).then(() => {
+    }, error => console.error(error));
+
+    for(var i in this.placedstudents){
+      this.studentService.AddRejectedCompany(this.placedstudents[i],id).then(() => {
       }, error => console.error(error));
       this.studentService.removeInprogress1(this.placedstudents[i],id).then(() => {
       }, error => console.error(error));

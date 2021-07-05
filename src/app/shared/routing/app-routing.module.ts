@@ -17,6 +17,8 @@ import {CompanyHistoryComponent } from '../../components/company-history/company
 import { AuthGuard } from "../../shared/guard/auth.guard";
 import { TicketsComponent } from 'src/app/components/tickets/tickets.component';
 import { InsightsComponent } from 'src/app/components/insights/insights.component';
+import { ClosedTicketsComponent } from 'src/app/components/closed-tickets/closed-tickets.component';
+import {AllcompanyEventsComponent} from 'src/app/components/allcompany-events/allcompany-events.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -33,7 +35,10 @@ const routes: Routes = [
   {path:'history',component:HistoryComponent, canActivate: [AuthGuard]},
   {path:'history/:id',component:CompanyHistoryComponent, canActivate: [AuthGuard]},
   {path:'studenttickets',component:TicketsComponent, canActivate: [AuthGuard]},
-  {path:'home',component:InsightsComponent, canActivate: [AuthGuard]}
+  {path:'home',component:InsightsComponent, canActivate: [AuthGuard]},
+  {path:'closed-tickets',component:ClosedTicketsComponent, canActivate: [AuthGuard]},
+  {path:'all-events',component:AllcompanyEventsComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({

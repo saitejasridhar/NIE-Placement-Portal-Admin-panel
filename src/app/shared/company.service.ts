@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { CompileSummaryKind } from '@angular/compiler';
 import { firestore } from 'firebase/app';
+import { formatDate } from '@angular/common';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class CompanyService {
   companyRef: AngularFireObject<any>;
 
   constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) {}
-
+  jstoday:string;
 
 AddCompany(company:Company){ 
   return new Promise<any>((resolve, reject) => { 
@@ -78,11 +79,22 @@ AddCompany(company:Company){
   }
 
   DeleteTicket(id: string) {
-    return this.firestore.doc('Tickets/' + id).delete();
+    const today= new Date();
+    this.jstoday = formatDate(today, 'dd-MM-yyyy hh:mm a', 'en-US', '+0530');
+    return this.firestore.doc('Tickets/' + id).update({
+      status:"Completed",
+      closedon:this.jstoday
+  }).catch(error => {
+      this.errorMgmt(error);
+    })
   }
 
   getEventList(id:string){
     return this.firestore.collection("Companys").doc(id).collection("events").snapshotChanges();
+  }
+
+  getallEventList(){
+    return this.firestore.collectionGroup("events").snapshotChanges();
   }
 
   AddEvent(event:any,id:any){ 
@@ -102,6 +114,7 @@ AddCompany(company:Company){
     return this.firestore.collection('Companys').doc(idcompany).collection("events").doc(id).update({
       type:event.type,
         date:event.date,
+        time:event.time,
         description:event.description,
   }).catch(error => {
       this.errorMgmt(error);
@@ -116,6 +129,15 @@ AddCompany(company:Company){
     for(var i in students){
       this.firestore.collection("Companys").doc(companyid).update({
         Placed: firestore.FieldValue.arrayUnion(students[i])
+      });
+    }
+    return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();
+  }
+
+  addrejectedstudents(companyid:string,students:Array<string>){
+    for(var i in students){
+      this.firestore.collection("Companys").doc(companyid).update({
+        Rejected: firestore.FieldValue.arrayUnion(students[i])
       });
     }
     return this.firestore.collection('Companys').doc(companyid+"sidfkdsn").collection("events").doc("asd").delete();

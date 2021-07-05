@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/shared/company';
 import { CompanyService } from 'src/app/shared/company.service';
-
 @Component({
-  selector: 'app-tickets',
-  templateUrl: './tickets.component.html',
-  styleUrls: ['./tickets.component.css']
+  selector: 'app-closed-tickets',
+  templateUrl: './closed-tickets.component.html',
+  styleUrls: ['./closed-tickets.component.css']
 })
-export class TicketsComponent implements OnInit {
+export class ClosedTicketsComponent implements OnInit {
   isHistory:string;
   settings = {
     noDataMessage:"No Tickets to be Resolved",
@@ -38,7 +37,7 @@ export class TicketsComponent implements OnInit {
       Subject: {
         title: "Subject",
         filter: false,
-        width: '20%'
+        width: '15%'
 
       },
       Description: {
@@ -53,6 +52,12 @@ export class TicketsComponent implements OnInit {
         width:'15%'
 
       },
+      closedon: {
+        title: "Closed on",
+        filter: false,
+        width:'15%'
+
+      },
     },
     delete: {
       deleteButtonContent: 'Completed',
@@ -61,10 +66,10 @@ export class TicketsComponent implements OnInit {
     actions: {
       add: false,
       edit:false,
+      delete:false,
       width: '10%',
       position: 'right',
-      custom: [
-        { name: 'viewrecord', title: 'Reply   '}]
+
     },
     pager: {
       display: true,
@@ -87,7 +92,7 @@ export class TicketsComponent implements OnInit {
     this.companyService.GetTicketsList().subscribe((actionArray) => {
       this.data = actionArray.map((item) => {
         console.log(item.payload.doc.data()['status'])
-       if(item.payload.doc.data()['status']==="Pending"){
+       if(item.payload.doc.data()['status']==="Completed"){
           return {
             id: item.payload.doc.id,
             ...(item.payload.doc.data() as any),
@@ -101,15 +106,12 @@ export class TicketsComponent implements OnInit {
     }
 
 
-  openclosedtickets()
+   back()
   {
-    this.router.navigateByUrl('/closed-tickets');
+    this.router.navigateByUrl('/studenttickets');
   }
 
-  onCustomAction(data){
-    window.open("mailto:"+data.data['email']+"?subject="+"Responding to \n"+data.data['Subject']+"&body=Hello \n"+data.data['Name']+" ("+data.data['USN']+") "+" from "+data.data['Branch']+ " branch, we have recieved your ticket with subject \"" +data.data['Subject'] + "\""
-  +"on "+data.data['Date']+ ". Responding to the same.", '_self');
-  }
+
 
 
   // Method to delete student object

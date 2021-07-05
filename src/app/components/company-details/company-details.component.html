@@ -13,14 +13,82 @@
   <div  style="height: 100%; width: 100%;z-index: 1;">
     <main  role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
        <div [style]="test" class="inner-adjust">
-         <button (click)="finish()" mat-button style="float: right;background-color:#b31414; color: white;">Finish</button>
-         <button (click)="back()" mat-stroked-button style="float: right; color: #b31414; margin-right: 10px;">Back</button>
+         <div style="margin-top: 40px;border: 1px solid #24246663; padding: 30px;"> 
+         <button mat-button style="float: right;background-color:#fff;border: 1px solid #242466; font-weight: 900   ; color: #242466;">{{compTier}}</button>
+         <h1 style="text-align: left;color: #242466;width: max-content;">{{Name}}</h1>       
 
-         <h1 style="margin-top: 40px; text-align: center;color: #242466;">{{Name}}</h1>
+         <p  class="descp">
+             {{Desc}}
+         </p>
+         <!-- FIRST ROW -->
+         <div class="flex-container">
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Branches</h3>
+                 <div class="flex-small">{{Branches}}</div>
+             </div>
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Package</h3>
+                 <div class="flex-small">{{Package}}</div>
+             </div>
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Offering</h3>
+                 <div class="flex-small">{{Offering}}</div>
+             </div>
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Location</h3>
+                 <div class="flex-small">{{Location}}</div>
+             </div>
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Skills</h3>
+                 <div class="flex-small">{{Skills}}</div>
+             </div>
+             <div class="flex-item-left">
+                 <h3 style="color: #242466;">Positions</h3>
+                 <div class="flex-small">{{Positions}}</div>
+             </div>
+         </div>
+         <!-- SECOND ROW -->
+         <div class="flex-container2">
+             <h3  style="color: #242466; text-align: center; margin: 0px; padding-top: 20px;">Eligibility</h3>
+             <div  id="lefteli" class="flex-item-left2">
+                 <div class="flex-small2">
+                     10th percentage
+                 </div>
+                 <div class="small-div">{{per10}}</div>
+             </div>
+             <div class="flex-item-left2">
+                 <div class="flex-small2">
+                     12th percentage
+                 </div>
+                 <div class="small-div">{{per12}}</div>
+             </div>
+             <div class="flex-item-left2">
+                 <div class="flex-small2">
+                     CGPA
+                 </div>
+                 <div class="small-div">{{cutCGPA}}</div>
+             </div>
+             <div class="flex-item-left2">
+                 <div class="flex-small2">
+                     Current Arrears
+                 </div>
+                 <div class="small-div">{{cutCurArr}}</div>
+             </div>
+             <div class="flex-item-left2">
+                 <div class="flex-small2">
+                     Cleared Arrears
+                 </div>
+                 <div class="small-div">{{cutClrArr}}</div>
+             </div>
+         </div>
+      </div>
+
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
              <h4  style="color: #242466;">Events</h4>
              <button mat-raised-button style="float: right;background-color:#242466; color: white;" (click)="openDialog()">Create Event</button>
           </div>
+
+          
           <div class="pricing-header mx-auto">
             <ng2-smart-table (edit)="updateEvent($event.data)" (delete)="deleteCompany($event.data.id)" style="background-color: #242466;" [settings]="settings" [source]="data"></ng2-smart-table>
           </div>
@@ -93,6 +161,8 @@
                               <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="settings1" (userRowSelect)="rowclick($event)" [source]="studentdata1"></ng2-smart-table>
                            </div>
                            <button (click)="onClick()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Placed</button>
+                           <button (click)="rejected()" mat-button style="margin-right: 10px;float: right;background-color:#b31414; color: white;"(click)= "saveEvent(eventForm.value)">Rejected</button>
+
                          </ng-template>
                     </e-tabitem>
                     <e-tabitem>
@@ -119,11 +189,13 @@
                 </e-tabitems>
             </ejs-tab> 
        </div>
-
+       <button (click)="finish()" mat-button style="float: right;background-color:#b31414; color: white;">Finished Placements</button>
+       <button (click)="back()" mat-stroked-button style="margin-bottom: 100px;float: right; color: #b31414; margin-right: 10px;">Back</button>
+       <br>
      </div>
 
      <div  style="
-     width: 40%;background-color: #ffffff;" *ngIf = 'isOpenstudent'  id="modal">
+    width: 70%;height: 90%;background-color: #ffffff;" *ngIf = 'isOpenstudent'  id="modal">
      <div style="width: 94%; margin-left: 2%;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
        <h4  style="color: #242466;">{{FName}}{{Sname}}</h4>
     </div>      <div class="row" style="margin-top: 20px;">
@@ -165,6 +237,9 @@
      </div>
  
     </main>
+    <br>
+    <br>
+
   </div>
 
   
