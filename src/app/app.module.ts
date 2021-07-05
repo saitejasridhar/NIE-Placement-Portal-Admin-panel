@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from './material.module';
 import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabModule } from '@syncfusion/ej2-angular-navigations';
 
-
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -56,7 +55,7 @@ import { TicketsComponent } from './components/tickets/tickets.component';
 import { InsightsComponent } from './components/insights/insights.component';
 import { ClosedTicketsComponent } from './components/closed-tickets/closed-tickets.component';
 import { AllcompanyEventsComponent } from './components/allcompany-events/allcompany-events.component';
-
+import { ExcelService } from './shared/services/excel.service'
 
 
 
@@ -102,7 +101,7 @@ import { AllcompanyEventsComponent } from './components/allcompany-events/allcom
     MatSlideToggleModule
 
   ],
-  providers: [AuthService,CompanyService,AngularFirestore],
+  providers: [AuthService,CompanyService,AngularFirestore,ExcelService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -5,6 +5,7 @@ import { EventService } from "../../shared/services/events.service";
 import { CompanyService } from '../../shared/company.service';
 import { StudentService } from '../../shared/students.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExcelService } from 'src/app/shared/services/excel.service';
 
 @Component({
   selector: 'app-company-details',
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CompanyDetailsComponent implements OnInit {
   blurbackground: string = "opacity:1";
+  exeldata:any[];
   studentname:String;
   USN:String;
   Sname:String;
@@ -213,10 +215,24 @@ export class CompanyDetailsComponent implements OnInit {
   placedinapplied:Array<string>;
   applieduplaced:Array<string>;
   inprog:Array<string>;
-
+  testas: any = [{
+    case_worked: "abc",
+    note: "Test",
+    id: "1234"
+  },
+  {
+    case_worked: "def",
+    note: "test 1",
+    id: "1234"
+  },
+  {
+    case_worked: "def",
+    note: "Test 2",
+    id: "3456"
+  }];
 
   constructor(public companyService: CompanyService,public fb: FormBuilder  ,public eventService: EventService, 
-    private actRoute: ActivatedRoute,public router: Router, public studentService:StudentService) { 
+    private actRoute: ActivatedRoute,public router: Router, public studentService:StudentService,private excelService:ExcelService) { 
        this.types = ["Test", "Interview", "Pre-placement Talk"];
        var id = this.actRoute.snapshot.paramMap.get('id');
        this.companyService.GetCompany(id).subscribe(
@@ -247,6 +263,16 @@ export class CompanyDetailsComponent implements OnInit {
        this.placedCname="";
        this.isOpenstudent=false;
   }
+
+ 
+  exportAsXLSX():void {
+    for(var i in this.allappliedstudents){
+      delete this.allappliedstudents[i]["id"];
+    }
+   
+    this.excelService.exportAsExcelFile(this.allappliedstudents, 'export-to-excel');
+  }
+
 
   ngOnInit(): void {  
     var id = this.actRoute.snapshot.paramMap.get('id');

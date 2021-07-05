@@ -149,6 +149,8 @@
                      <div style="margin-top: 20px;">
                         <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="appliedsettings" (userRowSelect)="rowclick($event)" [source]="allappliedstudents"></ng2-smart-table>
                      </div>
+                     <button (click)="exportAsXLSX()" mat-button style="float: right;background-color:#242466; color: white;">Download</button>
+
                   </ng-template>
               </e-tabitem>
 
