@@ -78,6 +78,19 @@ AddCompany(company:Company){
     return this.firestore.doc('Companys/' + id).delete();
   }
 
+
+  DeleteCompanyevents(id: string) {
+     this.firestore.collection("Companys").doc(id).collection("events")
+    .get().subscribe(querySnapshot => {
+      querySnapshot.docs.forEach(snapshot => {
+          snapshot.ref.delete();
+      })
+  })
+  return 1;
+  }
+
+
+
   DeleteTicket(id: string) {
     const today= new Date();
     this.jstoday = formatDate(today, 'dd-MM-yyyy hh:mm a', 'en-US', '+0530');

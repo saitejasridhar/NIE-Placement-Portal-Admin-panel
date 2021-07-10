@@ -340,8 +340,9 @@ export class InsightsComponent implements OnInit {
            labels: ["CSE", "ISE", "MECH","IPE","CIVIL","EEE","EC"],
            datasets: [{
                label: '# of Votes',
-               data: [this.CSEpackage/this.CSEcompanies,this.ISEpackage/this.ISEcompanies,this.Mechpackage/this.Mechcompanies,this.IPEpackage/this.IPEcompanies,
-                this.Civilpackage/this.Civilcompanies,this.EEEpackage/this.EEEcompanies,this.ECpackage/this.ECcompanies],
+              //  data: [this.CSEpackage/this.CSEcompanies,this.ISEpackage/this.ISEcompanies,this.Mechpackage/this.Mechcompanies,this.IPEpackage/this.IPEcompanies,
+              //   this.Civilpackage/this.Civilcompanies,this.EEEpackage/this.EEEcompanies,this.ECpackage/this.ECcompanies],
+              data:[2,5,1,6,7,2,3],
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -395,8 +396,9 @@ export class InsightsComponent implements OnInit {
            labels: ["CSE", "ISE", "MECH","IPE","CIVIL","EEE","EC"],
            datasets: [{
                label: '# of Votes',
-               data: [this.CSEcompanies,this.ISEcompanies,this.Mechcompanies,this.IPEcompanies,
-                this.Civilcompanies,this.EEEcompanies,this.ECcompanies],
+              //  data: [this.CSEcompanies,this.ISEcompanies,this.Mechcompanies,this.IPEcompanies,
+              //   this.Civilcompanies,this.EEEcompanies,this.ECcompanies],
+              data:[1,2,5,2,2,5,5],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',

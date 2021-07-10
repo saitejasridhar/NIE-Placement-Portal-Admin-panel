@@ -146,7 +146,7 @@
                      <h4 style="color: #242466;"> Applied Students </h4>
                   </ng-template>
                   <ng-template #content>
-                     <div style="margin-top: 20px;">
+                     <div  style="margin-top: 20px;cursor: pointer;">
                         <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="appliedsettings" (userRowSelect)="rowclick($event)" [source]="allappliedstudents"></ng2-smart-table>
                      </div>
                      <button (click)="exportAsXLSX()" mat-button style="float: right;background-color:#242466; color: white;">Download</button>
@@ -159,7 +159,7 @@
                            <h4 style="color: #242466;"> Inprogress Students </h4>
                         </ng-template>
                         <ng-template #content>
-                           <div style="margin-top: 20px;">
+                           <div style="margin-top: 20px;cursor: pointer;">
                               <ng2-smart-table (custom)="onCustomAction($event.data)"  [settings]="settings1" (userRowSelect)="rowclick($event)" [source]="studentdata1"></ng2-smart-table>
                            </div>
                            <button (click)="onClick()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Placed</button>
@@ -172,7 +172,7 @@
                            <h4 style="color: #242466;"> Placed Students </h4>
                         </ng-template>
                         <ng-template #content>
-                           <div style="margin-top: 20px;">
+                           <div style="margin-top: 20px;cursor: pointer;">
                               <ng2-smart-table  (custom)="onCustomAction($event.data)"  [settings]="settings1" (userRowSelect)="rowclickremove($event)" [source]="studentdataplaced"></ng2-smart-table>
                            </div>
                            <button (click)="remove()" mat-button style="float: right;background-color:#242466; color: white;"(click)= "saveEvent(eventForm.value)">Remove</button>
@@ -183,7 +183,7 @@
                            <h4 style="color: #242466;" > Unplaced Students </h4>
                         </ng-template>
                         <ng-template #content>
-                           <div style="margin-top: 20px;">
+                           <div style="margin-top: 20px;cursor: pointer;">
                               <ng2-smart-table (custom)="onCustomAction($event.data)" [settings]="settings1" [source]="studentdataunplaced"></ng2-smart-table>
                            </div>
                         </ng-template>

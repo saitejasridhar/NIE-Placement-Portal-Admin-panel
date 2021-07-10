@@ -242,7 +242,7 @@ export class CompanyDetailsComponent implements OnInit {
        this.Desc=data.Description;
        this.Package=data.Ctc.toString();
        this.Branches=data.Branch.toString();
-       this.Offering=data.Ctc.toString();
+       this.Offering=data.Offer.toString();
        this.Location=data.Location;
        this.Skills=data.Skills.toString();
        this.Positions=data.Roles.toString();
@@ -268,6 +268,18 @@ export class CompanyDetailsComponent implements OnInit {
   exportAsXLSX():void {
     for(var i in this.allappliedstudents){
       delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+      delete this.allappliedstudents[i]["id"];
+
     }
    
     this.excelService.exportAsExcelFile(this.allappliedstudents, 'export-to-excel');

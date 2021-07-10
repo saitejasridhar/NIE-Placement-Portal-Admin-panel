@@ -25,26 +25,19 @@
         <input type="button" style="background-color: #b31414;"  class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
       </div>
 
-      <div class="formGroup">
-        <span class="or" style="font-size: 18px"><span class="orInner">OR</span></span>
-      </div>
+    
 
       <!-- Calling GoogleAuth Api from AuthService -->
-      <div class="formGroup">
-        <button type="button" class="btn btn-red googleBtn" (click)="authService.GoogleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          Log in with Google
-        </button>
-      </div>
+ 
 
       <div class="forgotPassword">
         <span routerLink="/forgot-password" style="color: #ffff;">Forgot Password?</span>
       </div>
     </div>
 
-   <div class="redirectToLogin" style="color: black;">
+   <!-- <div class="redirectToLogin" style="color: black;">
       <span>Don't have an account?<span class="redirect" routerLink="/register-user" style="color: black;"> Sign Up</span></span>
-    </div> 
+    </div>  -->
 
   </div>
 </div>

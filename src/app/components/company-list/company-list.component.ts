@@ -100,6 +100,7 @@ export class CompanyListComponent implements OnInit  {
     if (window.confirm('Are sure you want to delete this company ?')) { 
       this.companyService.DeleteCompany(studentid).then(() => {
       }, error => console.error(error));
+      this.companyService.DeleteCompanyevents(studentid);
     }
   }
 }
